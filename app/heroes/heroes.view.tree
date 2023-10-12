@@ -4,9 +4,9 @@ $story_app_heroes $mol_page
 		<= Party $mol_page title \Отряд
 		<= Heroes_list $mol_list
 			rows <= heroes_list /
-				<= Hero* $mol_page
-					title \Маг 12ур
-					body /
+				<= Hero*0 $mol_view sub /
+					<= Hero_name* $mol_text text <= hero_name* \
+					- body /
 						<= Skin $mol_page title \Портрет
 						<= Skills $mol_page title \Умения
 						<= Weapon $mol_page title \Оружие
