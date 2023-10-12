@@ -9,20 +9,40 @@ $story_app $mol_book2_catalog
 			body /
 				<= Inventory $mol_page title \Инвентарь
 				<= Relic $mol_page title \Реликвии
+				<= Settings $mol_page title \Настройки
 		- Настройка героев и отряда, умения, оружия :: рунные слова
-		heroes <= Heroes $mol_page
-			title \Герои
-			body /
-				- Настройка
-				<= Party $mol_page title \Отряд
-				- Герой :: умения и оружия :: рунные слова
-				<= Hero $mol_page title \Герои
+		heroes <= Heroes_menu $mol_book2_catalog
+			menu_title \Герои
+			spreads *
+				party <= Party $mol_page title \Отряд
+				mage_hero <= Mage_hero $mol_page
+					title \Маг 12ур
+					body /
+						<= Skin $mol_page title \Портрет
+						<= Skills $mol_page title \Умения
+						<= Weapon $mol_page title \Оружие
+						<= Equipment $mol_page title \Снаряжение
+						<= Rune_word $mol_page title \Рунные слова
 		- Найти битву :: поле :: победа/поражение
 		battle <= Battle $mol_page
 			title \Битва
 			body /
 				<= Search_battle $mol_page title \Найти битву
-				<= Field $mol_page title \Поле
-		quest <= Quest $mol_page title \Квесты
-		event <= Event $mol_page title \Мероприятия
-		clan <= Clan $mol_page title \Клан
+				<= Field $mol_page title \Поле битвы
+				<= Result_battle $mol_page title \Результат битвы
+		- Доступные квесты
+		quest <= Quest $mol_page
+			title \Квесты
+			body /
+				<= Accept_quest $mol_page title \Принять квест
+		- Доступные события
+		event <= Event $mol_page
+			title \События
+			body /
+				<= Accept_event $mol_page title \Одолеть дракона. До 1 ноября
+		- Вступить в клан и клан
+		clan <= Clan $mol_page
+			title \Клан
+			body /
+				<= Join_clan $mol_page title \Вступить в клан
+
