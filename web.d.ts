@@ -1977,15 +1977,25 @@ declare namespace $ {
         Statistics(): $mol_page;
         Inventory(): $mol_page;
         Relic(): $mol_page;
+        Settings(): $mol_page;
         Player(): $mol_page;
         Party(): $mol_page;
-        Hero(): $mol_page;
-        Heroes(): $mol_page;
+        Skin(): $mol_page;
+        Skills(): $mol_page;
+        Weapon(): $mol_page;
+        Equipment(): $mol_page;
+        Rune_word(): $mol_page;
+        Mage_hero(): $mol_page;
+        Heroes_menu(): $$.$mol_book2_catalog;
         Search_battle(): $mol_page;
         Field(): $mol_page;
+        Result_battle(): $mol_page;
         Battle(): $mol_page;
+        Accept_quest(): $mol_page;
         Quest(): $mol_page;
+        Accept_event(): $mol_page;
         Event(): $mol_page;
+        Join_clan(): $mol_page;
         Clan(): $mol_page;
     }
 }

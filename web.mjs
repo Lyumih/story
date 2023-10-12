@@ -6607,7 +6607,7 @@ var $;
         spreads() {
             return {
                 player: this.Player(),
-                heroes: this.Heroes(),
+                heroes: this.Heroes_menu(),
                 battle: this.Battle(),
                 quest: this.Quest(),
                 event: this.Event(),
@@ -6629,12 +6629,18 @@ var $;
             obj.title = () => "Реликвии";
             return obj;
         }
+        Settings() {
+            const obj = new this.$.$mol_page();
+            obj.title = () => "Настройки";
+            return obj;
+        }
         Player() {
             const obj = new this.$.$mol_page();
             obj.title = () => "Персонаж";
             obj.body = () => [
                 this.Inventory(),
-                this.Relic()
+                this.Relic(),
+                this.Settings()
             ];
             return obj;
         }
@@ -6643,18 +6649,50 @@ var $;
             obj.title = () => "Отряд";
             return obj;
         }
-        Hero() {
+        Skin() {
             const obj = new this.$.$mol_page();
-            obj.title = () => "Герои";
+            obj.title = () => "Портрет";
             return obj;
         }
-        Heroes() {
+        Skills() {
             const obj = new this.$.$mol_page();
-            obj.title = () => "Герои";
+            obj.title = () => "Умения";
+            return obj;
+        }
+        Weapon() {
+            const obj = new this.$.$mol_page();
+            obj.title = () => "Оружие";
+            return obj;
+        }
+        Equipment() {
+            const obj = new this.$.$mol_page();
+            obj.title = () => "Снаряжение";
+            return obj;
+        }
+        Rune_word() {
+            const obj = new this.$.$mol_page();
+            obj.title = () => "Рунные слова";
+            return obj;
+        }
+        Mage_hero() {
+            const obj = new this.$.$mol_page();
+            obj.title = () => "Маг 12ур";
             obj.body = () => [
-                this.Party(),
-                this.Hero()
+                this.Skin(),
+                this.Skills(),
+                this.Weapon(),
+                this.Equipment(),
+                this.Rune_word()
             ];
+            return obj;
+        }
+        Heroes_menu() {
+            const obj = new this.$.$mol_book2_catalog();
+            obj.menu_title = () => "Герои";
+            obj.spreads = () => ({
+                party: this.Party(),
+                mage_hero: this.Mage_hero()
+            });
             return obj;
         }
         Search_battle() {
@@ -6664,7 +6702,12 @@ var $;
         }
         Field() {
             const obj = new this.$.$mol_page();
-            obj.title = () => "Поле";
+            obj.title = () => "Поле битвы";
+            return obj;
+        }
+        Result_battle() {
+            const obj = new this.$.$mol_page();
+            obj.title = () => "Результат битвы";
             return obj;
         }
         Battle() {
@@ -6672,23 +6715,48 @@ var $;
             obj.title = () => "Битва";
             obj.body = () => [
                 this.Search_battle(),
-                this.Field()
+                this.Field(),
+                this.Result_battle()
             ];
+            return obj;
+        }
+        Accept_quest() {
+            const obj = new this.$.$mol_page();
+            obj.title = () => "Принять квест";
             return obj;
         }
         Quest() {
             const obj = new this.$.$mol_page();
             obj.title = () => "Квесты";
+            obj.body = () => [
+                this.Accept_quest()
+            ];
+            return obj;
+        }
+        Accept_event() {
+            const obj = new this.$.$mol_page();
+            obj.title = () => "Одолеть дракона. До 1 ноября";
             return obj;
         }
         Event() {
             const obj = new this.$.$mol_page();
-            obj.title = () => "Мероприятия";
+            obj.title = () => "События";
+            obj.body = () => [
+                this.Accept_event()
+            ];
+            return obj;
+        }
+        Join_clan() {
+            const obj = new this.$.$mol_page();
+            obj.title = () => "Вступить в клан";
             return obj;
         }
         Clan() {
             const obj = new this.$.$mol_page();
             obj.title = () => "Клан";
+            obj.body = () => [
+                this.Join_clan()
+            ];
             return obj;
         }
     }
@@ -6703,16 +6771,34 @@ var $;
     ], $story_app.prototype, "Relic", null);
     __decorate([
         $mol_mem
+    ], $story_app.prototype, "Settings", null);
+    __decorate([
+        $mol_mem
     ], $story_app.prototype, "Player", null);
     __decorate([
         $mol_mem
     ], $story_app.prototype, "Party", null);
     __decorate([
         $mol_mem
-    ], $story_app.prototype, "Hero", null);
+    ], $story_app.prototype, "Skin", null);
     __decorate([
         $mol_mem
-    ], $story_app.prototype, "Heroes", null);
+    ], $story_app.prototype, "Skills", null);
+    __decorate([
+        $mol_mem
+    ], $story_app.prototype, "Weapon", null);
+    __decorate([
+        $mol_mem
+    ], $story_app.prototype, "Equipment", null);
+    __decorate([
+        $mol_mem
+    ], $story_app.prototype, "Rune_word", null);
+    __decorate([
+        $mol_mem
+    ], $story_app.prototype, "Mage_hero", null);
+    __decorate([
+        $mol_mem
+    ], $story_app.prototype, "Heroes_menu", null);
     __decorate([
         $mol_mem
     ], $story_app.prototype, "Search_battle", null);
@@ -6721,13 +6807,25 @@ var $;
     ], $story_app.prototype, "Field", null);
     __decorate([
         $mol_mem
+    ], $story_app.prototype, "Result_battle", null);
+    __decorate([
+        $mol_mem
     ], $story_app.prototype, "Battle", null);
+    __decorate([
+        $mol_mem
+    ], $story_app.prototype, "Accept_quest", null);
     __decorate([
         $mol_mem
     ], $story_app.prototype, "Quest", null);
     __decorate([
         $mol_mem
+    ], $story_app.prototype, "Accept_event", null);
+    __decorate([
+        $mol_mem
     ], $story_app.prototype, "Event", null);
+    __decorate([
+        $mol_mem
+    ], $story_app.prototype, "Join_clan", null);
     __decorate([
         $mol_mem
     ], $story_app.prototype, "Clan", null);
