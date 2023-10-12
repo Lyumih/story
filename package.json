@@ -166,7 +166,9 @@
     "$mol_type_intersect",
     "$mol_unicode",
     "$mol_page",
-    "$mol_match"
+    "$mol_match",
+    "$story_app_heroes",
+    "$story_fetch"
   ],
   "dependencies": {
     "jsdom": "*",

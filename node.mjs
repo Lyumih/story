@@ -7208,12 +7208,130 @@ var $;
 "use strict";
 var $;
 (function ($) {
+    class $story_app_heroes extends $mol_page {
+        title() {
+            return "Герои";
+        }
+        body() {
+            return [
+                this.Party(),
+                this.Mage_hero()
+            ];
+        }
+        Party() {
+            const obj = new this.$.$mol_page();
+            obj.title = () => "Отряд";
+            return obj;
+        }
+        Skin() {
+            const obj = new this.$.$mol_page();
+            obj.title = () => "Портрет";
+            return obj;
+        }
+        Skills() {
+            const obj = new this.$.$mol_page();
+            obj.title = () => "Умения";
+            return obj;
+        }
+        Weapon() {
+            const obj = new this.$.$mol_page();
+            obj.title = () => "Оружие";
+            return obj;
+        }
+        Equipment() {
+            const obj = new this.$.$mol_page();
+            obj.title = () => "Снаряжение";
+            return obj;
+        }
+        Rune_word() {
+            const obj = new this.$.$mol_page();
+            obj.title = () => "Рунные слова";
+            return obj;
+        }
+        Mage_hero() {
+            const obj = new this.$.$mol_page();
+            obj.title = () => "Маг 12ур";
+            obj.body = () => [
+                this.Skin(),
+                this.Skills(),
+                this.Weapon(),
+                this.Equipment(),
+                this.Rune_word()
+            ];
+            return obj;
+        }
+    }
+    __decorate([
+        $mol_mem
+    ], $story_app_heroes.prototype, "Party", null);
+    __decorate([
+        $mol_mem
+    ], $story_app_heroes.prototype, "Skin", null);
+    __decorate([
+        $mol_mem
+    ], $story_app_heroes.prototype, "Skills", null);
+    __decorate([
+        $mol_mem
+    ], $story_app_heroes.prototype, "Weapon", null);
+    __decorate([
+        $mol_mem
+    ], $story_app_heroes.prototype, "Equipment", null);
+    __decorate([
+        $mol_mem
+    ], $story_app_heroes.prototype, "Rune_word", null);
+    __decorate([
+        $mol_mem
+    ], $story_app_heroes.prototype, "Mage_hero", null);
+    $.$story_app_heroes = $story_app_heroes;
+})($ || ($ = {}));
+//story/app/heroes/-view.tree/heroes.view.tree.ts
+;
+"use strict";
+var $;
+(function ($) {
+    class $story_fetch extends $mol_fetch {
+        static json(url, init) {
+            const back_url = 'http://localhost:3000/api/v1';
+            return super.json((back_url));
+        }
+        static json_post(url, init) {
+            return this.json(url, { method: 'POST', ...init });
+        }
+        static json_put(url, init) {
+            return this.json(url, { method: 'PUT', ...init });
+        }
+    }
+    $.$story_fetch = $story_fetch;
+})($ || ($ = {}));
+//story/fetch/fetch.ts
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        class $story_app_heroes extends $.$story_app_heroes {
+            heroes_list() {
+                const result = this.$.$story_fetch.json('/heroes');
+            }
+        }
+        $$.$story_app_heroes = $story_app_heroes;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+//story/app/heroes/heroes.view.ts
+;
+"use strict";
+var $;
+(function ($) {
     class $story_app extends $mol_book2_catalog {
         menu_title() {
             return "История";
         }
         param() {
             return "page";
+        }
+        Placeholder() {
+            return null;
         }
         Spread_default() {
             return this.Statistics();
@@ -7266,56 +7384,8 @@ var $;
             ];
             return obj;
         }
-        Party() {
-            const obj = new this.$.$mol_page();
-            obj.title = () => "Отряд";
-            return obj;
-        }
-        Skin() {
-            const obj = new this.$.$mol_page();
-            obj.title = () => "Портрет";
-            return obj;
-        }
-        Skills() {
-            const obj = new this.$.$mol_page();
-            obj.title = () => "Умения";
-            return obj;
-        }
-        Weapon() {
-            const obj = new this.$.$mol_page();
-            obj.title = () => "Оружие";
-            return obj;
-        }
-        Equipment() {
-            const obj = new this.$.$mol_page();
-            obj.title = () => "Снаряжение";
-            return obj;
-        }
-        Rune_word() {
-            const obj = new this.$.$mol_page();
-            obj.title = () => "Рунные слова";
-            return obj;
-        }
-        Mage_hero() {
-            const obj = new this.$.$mol_page();
-            obj.title = () => "Маг 12ур";
-            obj.body = () => [
-                this.Skin(),
-                this.Skills(),
-                this.Weapon(),
-                this.Equipment(),
-                this.Rune_word()
-            ];
-            return obj;
-        }
         Heroes_menu() {
-            const obj = new this.$.$mol_book2_catalog();
-            obj.menu_title = () => "Герои";
-            obj.param = () => "hero";
-            obj.spreads = () => ({
-                party: this.Party(),
-                mage_hero: this.Mage_hero()
-            });
+            const obj = new this.$.$story_app_heroes();
             return obj;
         }
         Search_battle() {
@@ -7401,27 +7471,6 @@ var $;
     __decorate([
         $mol_mem
     ], $story_app.prototype, "Player", null);
-    __decorate([
-        $mol_mem
-    ], $story_app.prototype, "Party", null);
-    __decorate([
-        $mol_mem
-    ], $story_app.prototype, "Skin", null);
-    __decorate([
-        $mol_mem
-    ], $story_app.prototype, "Skills", null);
-    __decorate([
-        $mol_mem
-    ], $story_app.prototype, "Weapon", null);
-    __decorate([
-        $mol_mem
-    ], $story_app.prototype, "Equipment", null);
-    __decorate([
-        $mol_mem
-    ], $story_app.prototype, "Rune_word", null);
-    __decorate([
-        $mol_mem
-    ], $story_app.prototype, "Mage_hero", null);
     __decorate([
         $mol_mem
     ], $story_app.prototype, "Heroes_menu", null);

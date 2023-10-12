@@ -1969,9 +1969,38 @@ declare namespace $ {
 }
 
 declare namespace $ {
+    class $story_app_heroes extends $mol_page {
+        title(): string;
+        body(): readonly any[];
+        Party(): $mol_page;
+        Skin(): $mol_page;
+        Skills(): $mol_page;
+        Weapon(): $mol_page;
+        Equipment(): $mol_page;
+        Rune_word(): $mol_page;
+        Mage_hero(): $mol_page;
+    }
+}
+
+declare namespace $ {
+    class $story_fetch extends $mol_fetch {
+        static json(url: string, init?: RequestInit): unknown;
+        static json_post(url: string, init?: RequestInit): unknown;
+        static json_put(url: string, init?: RequestInit): unknown;
+    }
+}
+
+declare namespace $.$$ {
+    class $story_app_heroes extends $.$story_app_heroes {
+        heroes_list(): void;
+    }
+}
+
+declare namespace $ {
     class $story_app extends $mol_book2_catalog {
         menu_title(): string;
         param(): string;
+        Placeholder(): any;
         Spread_default(): $mol_page;
         spreads(): Record<string, any>;
         Statistics_text(): $mol_page;
@@ -1980,14 +2009,7 @@ declare namespace $ {
         Relic(): $mol_page;
         Settings(): $mol_page;
         Player(): $mol_page;
-        Party(): $mol_page;
-        Skin(): $mol_page;
-        Skills(): $mol_page;
-        Weapon(): $mol_page;
-        Equipment(): $mol_page;
-        Rune_word(): $mol_page;
-        Mage_hero(): $mol_page;
-        Heroes_menu(): $$.$mol_book2_catalog;
+        Heroes_menu(): $$.$story_app_heroes;
         Search_battle(): $mol_page;
         Field(): $mol_page;
         Result_battle(): $mol_page;
