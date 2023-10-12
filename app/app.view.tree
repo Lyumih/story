@@ -1,6 +1,7 @@
 $story_app $mol_book2_catalog
 	menu_title \История
 	param \page
+	Placeholder null
 	Spread_default <= Statistics $mol_page
 		title \Статистика
 		body / <= Statistics_text $mol_page title \Битв: 42
@@ -13,19 +14,7 @@ $story_app $mol_book2_catalog
 				<= Relic $mol_page title \Реликвии
 				<= Settings $mol_page title \Настройки
 		- Настройка героев и отряда, умения, оружия :: рунные слова
-		heroes <= Heroes_menu $mol_book2_catalog
-			menu_title \Герои
-			param \hero
-			spreads *
-				party <= Party $mol_page title \Отряд
-				mage_hero <= Mage_hero $mol_page
-					title \Маг 12ур
-					body /
-						<= Skin $mol_page title \Портрет
-						<= Skills $mol_page title \Умения
-						<= Weapon $mol_page title \Оружие
-						<= Equipment $mol_page title \Снаряжение
-						<= Rune_word $mol_page title \Рунные слова
+		heroes <= Heroes_menu $story_app_heroes
 		- Найти битву :: поле :: победа/поражение
 		battle <= Battle $mol_page
 			title \Битва
