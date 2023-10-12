@@ -331,6 +331,7 @@ $story_app $mol_book2_catalog
 		- Настройка героев и отряда, умения, оружия :: рунные слова
 		heroes <= Heroes_menu $mol_book2_catalog
 			menu_title \Герои
+			param \hero
 			spreads *
 				party <= Party $mol_page title \Отряд
 				mage_hero <= Mage_hero $mol_page

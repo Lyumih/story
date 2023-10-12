@@ -7311,6 +7311,7 @@ var $;
         Heroes_menu() {
             const obj = new this.$.$mol_book2_catalog();
             obj.menu_title = () => "Герои";
+            obj.param = () => "hero";
             obj.spreads = () => ({
                 party: this.Party(),
                 mage_hero: this.Mage_hero()
