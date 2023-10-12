@@ -1,0 +1,3 @@
+$story_app $mol_book2_catalog
+	menu_title \История
+	param \page
