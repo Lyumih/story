@@ -1,3 +1,28 @@
 $story_app $mol_book2_catalog
 	menu_title \История
 	param \page
+	Spread_default <= Statistics $mol_page title \Статистика
+	spreads *
+		- Персонаж: инвентарь, реликвии
+		player <= Player $mol_page
+			title \Персонаж
+			body /
+				<= Inventory $mol_page title \Инвентарь
+				<= Relic $mol_page title \Реликвии
+		- Настройка героев и отряда, умения, оружия :: рунные слова
+		heroes <= Heroes $mol_page
+			title \Герои
+			body /
+				- Настройка
+				<= Party $mol_page title \Отряд
+				- Герой :: умения и оружия :: рунные слова
+				<= Hero $mol_page title \Герои
+		- Найти битву :: поле :: победа/поражение
+		battle <= Battle $mol_page
+			title \Битва
+			body /
+				<= Search_battle $mol_page title \Найти битву
+				<= Field $mol_page title \Поле
+		quest <= Quest $mol_page title \Квесты
+		event <= Event $mol_page title \Мероприятия
+		clan <= Clan $mol_page title \Клан

@@ -1,4 +1,4 @@
-name: $reaper
+name: $story
 
 on:
     workflow_dispatch:
@@ -14,10 +14,10 @@ jobs:
         steps:
             - uses: hyoo-ru/mam_build@master2
               with:
-                  package: "reaper"
+                  package: "story"
                   modules: "app"
 
             - uses: JamesIves/github-pages-deploy-action@4.1.7
               with:
                   branch: gh-pages
-                  folder: reaper/app/-
+                  folder: story/app/-

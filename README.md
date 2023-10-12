@@ -1,6 +1,8 @@
-# Hyper Chance
+# Game of Story
 
 Игра "История"
+
+Site: 
 
 <!-- Сайт (временный): https://page.hyoo.ru/#!=tdgpgq_hbdfnc
 
