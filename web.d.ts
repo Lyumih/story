@@ -1974,6 +1974,7 @@ declare namespace $ {
         param(): string;
         Spread_default(): $mol_page;
         spreads(): Record<string, any>;
+        Statistics_text(): $mol_page;
         Statistics(): $mol_page;
         Inventory(): $mol_page;
         Relic(): $mol_page;

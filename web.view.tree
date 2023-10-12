@@ -317,7 +317,9 @@ $mol_book2_catalog $mol_book2
 $story_app $mol_book2_catalog
 	menu_title \История
 	param \page
-	Spread_default <= Statistics $mol_page title \Статистика
+	Spread_default <= Statistics $mol_page
+		title \Статистика
+		body / <= Statistics_text $mol_page title \Битв: 42
 	spreads *
 		- Персонаж: инвентарь, реликвии
 		player <= Player $mol_page

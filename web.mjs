@@ -6614,9 +6614,17 @@ var $;
                 clan: this.Clan()
             };
         }
+        Statistics_text() {
+            const obj = new this.$.$mol_page();
+            obj.title = () => "Битв: 42";
+            return obj;
+        }
         Statistics() {
             const obj = new this.$.$mol_page();
             obj.title = () => "Статистика";
+            obj.body = () => [
+                this.Statistics_text()
+            ];
             return obj;
         }
         Inventory() {
@@ -6760,6 +6768,9 @@ var $;
             return obj;
         }
     }
+    __decorate([
+        $mol_mem
+    ], $story_app.prototype, "Statistics_text", null);
     __decorate([
         $mol_mem
     ], $story_app.prototype, "Statistics", null);
