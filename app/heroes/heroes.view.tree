@@ -5,7 +5,14 @@ $story_app_heroes $mol_page
 		<= Heroes_list $mol_list
 			rows <= heroes_list /
 				<= Hero*0 $mol_view sub /
-					<= Hero_name* $mol_text text <= hero_name* \
+					<= Hero_name* $mol_labeler
+						title <= hero_name* \
+						content /
+							<= Skin* $mol_page title \Портрет
+							<= Skills* $mol_page title \Умения
+							<= Weapon* $mol_page title \Оружие
+							<= Equipment* $mol_page title \Снаряжение
+							<= Rune_word* $mol_page title \Рунные слова
 					- body /
 						<= Skin $mol_page title \Портрет
 						<= Skills $mol_page title \Умения

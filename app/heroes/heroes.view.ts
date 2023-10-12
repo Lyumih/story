@@ -5,7 +5,7 @@ namespace $.$$ {
 		@$mol_mem
 		heroes() {
 			console.log( 'heroes' )
-			return this.$.$story_fetch.json( '/hero' ) as { name: string, '@rid': string }[]
+			return this.$.$story_fetch.json( '/hero' ) as { name: string, '@rid': string, level: number }[]
 		}
 
 		heroes_list(): readonly any[] {
@@ -13,7 +13,8 @@ namespace $.$$ {
 		}
 
 		hero_name( id: any ): string {
-			return this.heroes().find( hero => hero[ '@rid' ] === id )?.name ?? ''
+			const hero = this.heroes().find( hero => hero[ '@rid' ] === id )
+			return hero ? `${ hero.name } - ${ hero.level } уровень` : ''
 		}
 
 	}
