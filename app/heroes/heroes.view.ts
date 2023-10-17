@@ -30,20 +30,27 @@ namespace $.$$ {
 			return hero ? `${ hero.name } - ${ hero.level } уровень` : ''
 		}
 
+		skill_list( id: string ): readonly any[] {
+			console.log( 'skill id', id )
+			return this.get_hero( id )?.skills?.map( skill => this.Skill( id + '_' + skill.in ) ) || []
+		}
+
 		get_skill( ids: string ) {
 			const [ hero_id, skill_id ] = ids.split( '_' )
 			return this.get_hero( hero_id )?.skills.find( skill => skill.in === skill_id )
 		}
 
 		skill_name( id: any ): string {
-			console.log( 'skill_name', id, this.heroes() )
-			console.log( this.get_hero( id ) )
-			return this.get_skill( id )?.skill.name || 'no skills'
+			return this.get_skill( id )?.skill.name || 'no skill'
 		}
 
-		skill_list( id: string ): readonly any[] {
-			console.log( 'skill id', id )
-			return this.get_hero( id )?.skills?.map( skill => this.Skill( id + '_' + skill.in ) ) || []
+
+		skill_level( id: any ): string {
+			return 'Ур. '  + this.get_skill( id )?.level
+		}
+
+		skill_description( id: any ): string {
+			return this.get_skill( id )?.skill.description || 'no description'
 		}
 	}
 }
