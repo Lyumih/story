@@ -9,13 +9,9 @@ $story_app_heroes $mol_page
 						title <= hero_name* \
 						content /
 							<= Skin* $mol_page title \Портрет
-							<= Skills* $mol_page title \Умения
+							<= Skills* $mol_list
+								rows <= skill_list* /
+									<= Skill*0_0 $mol_text text <= skill_name* \
 							<= Weapon* $mol_page title \Оружие
 							<= Equipment* $mol_page title \Снаряжение
 							<= Rune_word* $mol_page title \Рунные слова
-					- body /
-						<= Skin $mol_page title \Портрет
-						<= Skills $mol_page title \Умения
-						<= Weapon $mol_page title \Оружие
-						<= Equipment $mol_page title \Снаряжение
-						<= Rune_word $mol_page title \Рунные слова
