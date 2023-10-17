@@ -687,13 +687,14 @@ $story_app_heroes $mol_page
 					<= Hero_name* $mol_labeler
 						title <= hero_name* \
 						content /
-							<= Skin* $mol_page title \Портрет
+							<= Skill_text* $mol_text text \Умения
 							<= Skills* $mol_list
 								rows <= skill_list* /
-									<= Skill*0_0 $mol_text text <= skill_name* \
-							<= Weapon* $mol_page title \Оружие
-							<= Equipment* $mol_page title \Снаряжение
-							<= Rune_word* $mol_page title \Рунные слова
+									<= Skill*0_0 $mol_view sub /
+										<= Skill_name* $mol_text text <= skill_name* \
+										<= Skill_level* $mol_text text <= skill_level* \
+										<= Skill_description* $mol_text text <= skill_description* \
+							- <= Weapon* $mol_page title \Оружие
 
 $story_app $mol_book2_catalog
 	menu_title \История

@@ -2776,14 +2776,16 @@ declare namespace $ {
         body(): readonly any[];
         Party(): $mol_page;
         hero_name(id: any): string;
-        Skin(id: any): $mol_page;
+        Skill_text(id: any): $$.$mol_text;
         skill_name(id: any): string;
-        Skill(id: any): $$.$mol_text;
+        Skill_name(id: any): $$.$mol_text;
+        skill_level(id: any): string;
+        Skill_level(id: any): $$.$mol_text;
+        skill_description(id: any): string;
+        Skill_description(id: any): $$.$mol_text;
+        Skill(id: any): $mol_view;
         skill_list(id: any): readonly any[];
         Skills(id: any): $$.$mol_list;
-        Weapon(id: any): $mol_page;
-        Equipment(id: any): $mol_page;
-        Rune_word(id: any): $mol_page;
         Hero_name(id: any): $mol_labeler;
         Hero(id: any): $mol_view;
         heroes_list(): readonly any[];
@@ -2829,6 +2831,7 @@ declare namespace $.$$ {
         } | undefined;
         heroes_list(): readonly any[];
         hero_name(id: any): string;
+        skill_list(id: string): readonly any[];
         get_skill(ids: string): {
             level: number;
             in: string;
@@ -2838,7 +2841,8 @@ declare namespace $.$$ {
             };
         } | undefined;
         skill_name(id: any): string;
-        skill_list(id: string): readonly any[];
+        skill_level(id: any): string;
+        skill_description(id: any): string;
     }
 }
 

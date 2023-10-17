@@ -10004,17 +10004,42 @@ var $;
         hero_name(id) {
             return "";
         }
-        Skin(id) {
-            const obj = new this.$.$mol_page();
-            obj.title = () => "Портрет";
+        Skill_text(id) {
+            const obj = new this.$.$mol_text();
+            obj.text = () => "Умения";
             return obj;
         }
         skill_name(id) {
             return "";
         }
-        Skill(id) {
+        Skill_name(id) {
             const obj = new this.$.$mol_text();
             obj.text = () => this.skill_name(id);
+            return obj;
+        }
+        skill_level(id) {
+            return "";
+        }
+        Skill_level(id) {
+            const obj = new this.$.$mol_text();
+            obj.text = () => this.skill_level(id);
+            return obj;
+        }
+        skill_description(id) {
+            return "";
+        }
+        Skill_description(id) {
+            const obj = new this.$.$mol_text();
+            obj.text = () => this.skill_description(id);
+            return obj;
+        }
+        Skill(id) {
+            const obj = new this.$.$mol_view();
+            obj.sub = () => [
+                this.Skill_name(id),
+                this.Skill_level(id),
+                this.Skill_description(id)
+            ];
             return obj;
         }
         skill_list(id) {
@@ -10027,30 +10052,12 @@ var $;
             obj.rows = () => this.skill_list(id);
             return obj;
         }
-        Weapon(id) {
-            const obj = new this.$.$mol_page();
-            obj.title = () => "Оружие";
-            return obj;
-        }
-        Equipment(id) {
-            const obj = new this.$.$mol_page();
-            obj.title = () => "Снаряжение";
-            return obj;
-        }
-        Rune_word(id) {
-            const obj = new this.$.$mol_page();
-            obj.title = () => "Рунные слова";
-            return obj;
-        }
         Hero_name(id) {
             const obj = new this.$.$mol_labeler();
             obj.title = () => this.hero_name(id);
             obj.content = () => [
-                this.Skin(id),
-                this.Skills(id),
-                this.Weapon(id),
-                this.Equipment(id),
-                this.Rune_word(id)
+                this.Skill_text(id),
+                this.Skills(id)
             ];
             return obj;
         }
@@ -10077,22 +10084,22 @@ var $;
     ], $story_app_heroes.prototype, "Party", null);
     __decorate([
         $mol_mem_key
-    ], $story_app_heroes.prototype, "Skin", null);
+    ], $story_app_heroes.prototype, "Skill_text", null);
+    __decorate([
+        $mol_mem_key
+    ], $story_app_heroes.prototype, "Skill_name", null);
+    __decorate([
+        $mol_mem_key
+    ], $story_app_heroes.prototype, "Skill_level", null);
+    __decorate([
+        $mol_mem_key
+    ], $story_app_heroes.prototype, "Skill_description", null);
     __decorate([
         $mol_mem_key
     ], $story_app_heroes.prototype, "Skill", null);
     __decorate([
         $mol_mem_key
     ], $story_app_heroes.prototype, "Skills", null);
-    __decorate([
-        $mol_mem_key
-    ], $story_app_heroes.prototype, "Weapon", null);
-    __decorate([
-        $mol_mem_key
-    ], $story_app_heroes.prototype, "Equipment", null);
-    __decorate([
-        $mol_mem_key
-    ], $story_app_heroes.prototype, "Rune_word", null);
     __decorate([
         $mol_mem_key
     ], $story_app_heroes.prototype, "Hero_name", null);
@@ -10145,18 +10152,22 @@ var $;
                 const hero = this.heroes().find(hero => hero['@rid'] === id);
                 return hero ? `${hero.name} - ${hero.level} уровень` : '';
             }
+            skill_list(id) {
+                console.log('skill id', id);
+                return this.get_hero(id)?.skills?.map(skill => this.Skill(id + '_' + skill.in)) || [];
+            }
             get_skill(ids) {
                 const [hero_id, skill_id] = ids.split('_');
                 return this.get_hero(hero_id)?.skills.find(skill => skill.in === skill_id);
             }
             skill_name(id) {
-                console.log('skill_name', id, this.heroes());
-                console.log(this.get_hero(id));
-                return this.get_skill(id)?.skill.name || 'no skills';
+                return this.get_skill(id)?.skill.name || 'no skill';
             }
-            skill_list(id) {
-                console.log('skill id', id);
-                return this.get_hero(id)?.skills?.map(skill => this.Skill(id + '_' + skill.in)) || [];
+            skill_level(id) {
+                return 'Ур. ' + this.get_skill(id)?.level;
+            }
+            skill_description(id) {
+                return this.get_skill(id)?.skill.description || 'no description';
             }
         }
         __decorate([
