@@ -2916,6 +2916,18 @@ declare namespace $ {
         Skill(id: any): $mol_view;
         skill_list(id: any): readonly any[];
         Skills(id: any): $$.$mol_list;
+        Weapons_text(id: any): $$.$mol_text;
+        weapon_name(): string;
+        Weapon_name(id: any): $$.$mol_text;
+        weapon_level(): string;
+        Weapon_level(id: any): $$.$mol_text;
+        weapon_type(): string;
+        Weapon_type(id: any): $$.$mol_text;
+        weapon_params(): string;
+        Weapon_params(id: any): $$.$mol_text;
+        Weapon(id: any): $mol_view;
+        weapon_list(): readonly any[];
+        Weapons(id: any): $$.$mol_list;
         Hero_name(id: any): $mol_labeler;
         Hero(id: any): $mol_view;
         heroes_list(): readonly any[];
@@ -2945,6 +2957,14 @@ declare namespace $.$$ {
                     description: string;
                 };
             }[];
+            weapons: {
+                level: number;
+                in: string;
+                weapon: {
+                    name: string;
+                    description: string;
+                };
+            }[];
         }[];
         get_hero(id: string): {
             name: string;
@@ -2954,6 +2974,14 @@ declare namespace $.$$ {
                 level: number;
                 in: string;
                 skill: {
+                    name: string;
+                    description: string;
+                };
+            }[];
+            weapons: {
+                level: number;
+                in: string;
+                weapon: {
                     name: string;
                     description: string;
                 };

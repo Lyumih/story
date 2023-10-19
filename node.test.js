@@ -10052,12 +10052,71 @@ var $;
             obj.rows = () => this.skill_list(id);
             return obj;
         }
+        Weapons_text(id) {
+            const obj = new this.$.$mol_text();
+            obj.text = () => "Оружие";
+            return obj;
+        }
+        weapon_name() {
+            return "";
+        }
+        Weapon_name(id) {
+            const obj = new this.$.$mol_text();
+            obj.text = () => this.weapon_name();
+            return obj;
+        }
+        weapon_level() {
+            return "";
+        }
+        Weapon_level(id) {
+            const obj = new this.$.$mol_text();
+            obj.text = () => this.weapon_level();
+            return obj;
+        }
+        weapon_type() {
+            return "";
+        }
+        Weapon_type(id) {
+            const obj = new this.$.$mol_text();
+            obj.text = () => this.weapon_type();
+            return obj;
+        }
+        weapon_params() {
+            return "";
+        }
+        Weapon_params(id) {
+            const obj = new this.$.$mol_text();
+            obj.text = () => this.weapon_params();
+            return obj;
+        }
+        Weapon(id) {
+            const obj = new this.$.$mol_view();
+            obj.sub = () => [
+                this.Weapon_name(id),
+                this.Weapon_level(id),
+                this.Weapon_type(id),
+                this.Weapon_params(id)
+            ];
+            return obj;
+        }
+        weapon_list() {
+            return [
+                this.Weapon("0_0")
+            ];
+        }
+        Weapons(id) {
+            const obj = new this.$.$mol_list();
+            obj.rows = () => this.weapon_list();
+            return obj;
+        }
         Hero_name(id) {
             const obj = new this.$.$mol_labeler();
             obj.title = () => this.hero_name(id);
             obj.content = () => [
                 this.Skill_text(id),
-                this.Skills(id)
+                this.Skills(id),
+                this.Weapons_text(id),
+                this.Weapons(id)
             ];
             return obj;
         }
@@ -10102,6 +10161,27 @@ var $;
     ], $story_app_heroes.prototype, "Skills", null);
     __decorate([
         $mol_mem_key
+    ], $story_app_heroes.prototype, "Weapons_text", null);
+    __decorate([
+        $mol_mem_key
+    ], $story_app_heroes.prototype, "Weapon_name", null);
+    __decorate([
+        $mol_mem_key
+    ], $story_app_heroes.prototype, "Weapon_level", null);
+    __decorate([
+        $mol_mem_key
+    ], $story_app_heroes.prototype, "Weapon_type", null);
+    __decorate([
+        $mol_mem_key
+    ], $story_app_heroes.prototype, "Weapon_params", null);
+    __decorate([
+        $mol_mem_key
+    ], $story_app_heroes.prototype, "Weapon", null);
+    __decorate([
+        $mol_mem_key
+    ], $story_app_heroes.prototype, "Weapons", null);
+    __decorate([
+        $mol_mem_key
     ], $story_app_heroes.prototype, "Hero_name", null);
     __decorate([
         $mol_mem_key
@@ -10139,7 +10219,6 @@ var $;
     (function ($$) {
         class $story_app_heroes extends $.$story_app_heroes {
             heroes() {
-                console.log('heroes');
                 return this.$.$story_fetch.json('/hero');
             }
             get_hero(id) {
@@ -10153,7 +10232,6 @@ var $;
                 return hero ? `${hero.name} - ${hero.level} уровень` : '';
             }
             skill_list(id) {
-                console.log('skill id', id);
                 return this.get_hero(id)?.skills?.map(skill => this.Skill(id + '_' + skill.in)) || [];
             }
             get_skill(ids) {
