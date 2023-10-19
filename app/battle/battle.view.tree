@@ -1,0 +1,6 @@
+$story_app_battle $mol_page
+	title \Поле битвы
+	body /
+		<= Search_battle $mol_button_major
+			title \Найти битву
+		<= Field $story_app_battle_field

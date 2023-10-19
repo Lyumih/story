@@ -16,12 +16,7 @@ $story_app $mol_book2_catalog
 		- Настройка героев и отряда, умения, оружия :: рунные слова
 		heroes <= Heroes_menu $story_app_heroes
 		- Найти битву :: поле :: победа/поражение
-		battle <= Battle $mol_page
-			title \Битва
-			body /
-				<= Search_battle $mol_page title \Найти битву
-				<= Field $mol_page title \Поле битвы
-				<= Result_battle $mol_page title \Результат битвы
+		battle <= Battle $story_app_battle
 		- Доступные квесты
 		quest <= Quest $mol_page
 			title \Квесты
@@ -37,4 +32,8 @@ $story_app $mol_book2_catalog
 			title \Клан
 			body /
 				<= Join_clan $mol_page title \Вступить в клан
+		- Вики с игрой
+		wiki <= Wiki $mol_link
+			title \Об игре
+			uri \https://page.hyoo.ru/#!=sgmokp_sixci8
 

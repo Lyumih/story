@@ -1,0 +1,6 @@
+$story_app_battle_field $mol_list
+	rows /
+		<= Turn $mol_text text \Ход: 2
+		<= Field $mol_text text \Поле битвы. x x x x x x x
+		<= Skills $mol_text text \Умения
+		<= EndTurn $mol_button_major title \Закончить ход
