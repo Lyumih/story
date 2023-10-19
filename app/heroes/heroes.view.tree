@@ -15,4 +15,11 @@ $story_app_heroes $mol_page
 										<= Skill_name* $mol_text text <= skill_name* \
 										<= Skill_level* $mol_text text <= skill_level* \
 										<= Skill_description* $mol_text text <= skill_description* \
-							- <= Weapon* $mol_page title \Оружие
+							<= Weapons_text* $mol_text text \Оружие
+							<= Weapons* $mol_list
+								rows <= weapon_list /
+									<= Weapon*0_0 $mol_view sub /
+										<= Weapon_name* $mol_text text <= weapon_name \
+										<= Weapon_level* $mol_text text <= weapon_level \
+										<= Weapon_type* $mol_text text <= weapon_type \
+										<= Weapon_params* $mol_text text <= weapon_params \

@@ -4,12 +4,19 @@ namespace $.$$ {
 
 		@$mol_mem
 		heroes() {
-			console.log( 'heroes' )
 			return this.$.$story_fetch.json( '/hero' ) as {
 				name: string, '@rid': string, level: number, skills: {
 					level: number,
 					in: string,
 					skill: {
+						name: string,
+						description: string,
+					}
+				}[],
+				weapons: {
+					level: number,
+					in: string,
+					weapon: {
 						name: string,
 						description: string,
 					}
@@ -31,7 +38,6 @@ namespace $.$$ {
 		}
 
 		skill_list( id: string ): readonly any[] {
-			console.log( 'skill id', id )
 			return this.get_hero( id )?.skills?.map( skill => this.Skill( id + '_' + skill.in ) ) || []
 		}
 
