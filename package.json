@@ -201,7 +201,10 @@
     "$mol_embed_youtube",
     "$mol_icon_youtube",
     "$mol_frame",
-    "$story_fetch"
+    "$story_fetch",
+    "$story_app_battle",
+    "$mol_button_major",
+    "$story_app_battle_field"
   ],
   "dependencies": {
     "jsdom": "*",

@@ -10230,6 +10230,110 @@ var $;
 "use strict";
 var $;
 (function ($) {
+    class $mol_button_major extends $mol_button_typed {
+        attr() {
+            return {
+                ...super.attr(),
+                mol_theme: "$mol_theme_accent"
+            };
+        }
+    }
+    $.$mol_button_major = $mol_button_major;
+})($ || ($ = {}));
+//mol/button/major/-view.tree/major.view.tree.ts
+;
+"use strict";
+var $;
+(function ($) {
+    $mol_style_attach("mol/button/major/major.view.css", "[mol_button_major][disabled] {\n\topacity: .5;\n\tfilter: grayscale();\n}\n");
+})($ || ($ = {}));
+//mol/button/major/-css/major.view.css.ts
+;
+"use strict";
+var $;
+(function ($) {
+    class $story_app_battle_field extends $mol_list {
+        rows() {
+            return [
+                this.Turn(),
+                this.Field(),
+                this.Skills(),
+                this.EndTurn()
+            ];
+        }
+        Turn() {
+            const obj = new this.$.$mol_text();
+            obj.text = () => "Ход: 2";
+            return obj;
+        }
+        Field() {
+            const obj = new this.$.$mol_text();
+            obj.text = () => "Поле битвы. x x x x x x x";
+            return obj;
+        }
+        Skills() {
+            const obj = new this.$.$mol_text();
+            obj.text = () => "Умения";
+            return obj;
+        }
+        EndTurn() {
+            const obj = new this.$.$mol_button_major();
+            obj.title = () => "Закончить ход";
+            return obj;
+        }
+    }
+    __decorate([
+        $mol_mem
+    ], $story_app_battle_field.prototype, "Turn", null);
+    __decorate([
+        $mol_mem
+    ], $story_app_battle_field.prototype, "Field", null);
+    __decorate([
+        $mol_mem
+    ], $story_app_battle_field.prototype, "Skills", null);
+    __decorate([
+        $mol_mem
+    ], $story_app_battle_field.prototype, "EndTurn", null);
+    $.$story_app_battle_field = $story_app_battle_field;
+})($ || ($ = {}));
+//story/app/battle/field/-view.tree/field.view.tree.ts
+;
+"use strict";
+var $;
+(function ($) {
+    class $story_app_battle extends $mol_page {
+        title() {
+            return "Поле битвы";
+        }
+        body() {
+            return [
+                this.Search_battle(),
+                this.Field()
+            ];
+        }
+        Search_battle() {
+            const obj = new this.$.$mol_button_major();
+            obj.title = () => "Найти битву";
+            return obj;
+        }
+        Field() {
+            const obj = new this.$.$story_app_battle_field();
+            return obj;
+        }
+    }
+    __decorate([
+        $mol_mem
+    ], $story_app_battle.prototype, "Search_battle", null);
+    __decorate([
+        $mol_mem
+    ], $story_app_battle.prototype, "Field", null);
+    $.$story_app_battle = $story_app_battle;
+})($ || ($ = {}));
+//story/app/battle/-view.tree/battle.view.tree.ts
+;
+"use strict";
+var $;
+(function ($) {
     class $story_app extends $mol_book2_catalog {
         menu_title() {
             return "История";
@@ -10250,7 +10354,8 @@ var $;
                 battle: this.Battle(),
                 quest: this.Quest(),
                 event: this.Event(),
-                clan: this.Clan()
+                clan: this.Clan(),
+                wiki: this.Wiki()
             };
         }
         Statistics_text() {
@@ -10295,29 +10400,8 @@ var $;
             const obj = new this.$.$story_app_heroes();
             return obj;
         }
-        Search_battle() {
-            const obj = new this.$.$mol_page();
-            obj.title = () => "Найти битву";
-            return obj;
-        }
-        Field() {
-            const obj = new this.$.$mol_page();
-            obj.title = () => "Поле битвы";
-            return obj;
-        }
-        Result_battle() {
-            const obj = new this.$.$mol_page();
-            obj.title = () => "Результат битвы";
-            return obj;
-        }
         Battle() {
-            const obj = new this.$.$mol_page();
-            obj.title = () => "Битва";
-            obj.body = () => [
-                this.Search_battle(),
-                this.Field(),
-                this.Result_battle()
-            ];
+            const obj = new this.$.$story_app_battle();
             return obj;
         }
         Accept_quest() {
@@ -10359,6 +10443,12 @@ var $;
             ];
             return obj;
         }
+        Wiki() {
+            const obj = new this.$.$mol_link();
+            obj.title = () => "Об игре";
+            obj.uri = () => "https://page.hyoo.ru/#!=sgmokp_sixci8";
+            return obj;
+        }
     }
     __decorate([
         $mol_mem
@@ -10383,15 +10473,6 @@ var $;
     ], $story_app.prototype, "Heroes_menu", null);
     __decorate([
         $mol_mem
-    ], $story_app.prototype, "Search_battle", null);
-    __decorate([
-        $mol_mem
-    ], $story_app.prototype, "Field", null);
-    __decorate([
-        $mol_mem
-    ], $story_app.prototype, "Result_battle", null);
-    __decorate([
-        $mol_mem
     ], $story_app.prototype, "Battle", null);
     __decorate([
         $mol_mem
@@ -10411,6 +10492,9 @@ var $;
     __decorate([
         $mol_mem
     ], $story_app.prototype, "Clan", null);
+    __decorate([
+        $mol_mem
+    ], $story_app.prototype, "Wiki", null);
     $.$story_app = $story_app;
 })($ || ($ = {}));
 //story/app/-view.tree/app.view.tree.ts

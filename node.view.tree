@@ -691,6 +691,25 @@ $story_app_heroes $mol_page
 								<= Weapon_type* $mol_text text <= weapon_type* \
 								<= Weapon_params* $mol_text text <= weapon_params* \
 
+$mol_button_major $mol_button_typed
+	attr *
+		^
+		mol_theme \$mol_theme_accent
+
+$story_app_battle_field $mol_list
+	rows /
+		<= Turn $mol_text text \Ход: 2
+		<= Field $mol_text text \Поле битвы. x x x x x x x
+		<= Skills $mol_text text \Умения
+		<= EndTurn $mol_button_major title \Закончить ход
+
+$story_app_battle $mol_page
+	title \Поле битвы
+	body /
+		<= Search_battle $mol_button_major
+			title \Найти битву
+		<= Field $story_app_battle_field
+
 $story_app $mol_book2_catalog
 	menu_title \История
 	param \page
@@ -709,12 +728,7 @@ $story_app $mol_book2_catalog
 		- Настройка героев и отряда, умения, оружия :: рунные слова
 		heroes <= Heroes_menu $story_app_heroes
 		- Найти битву :: поле :: победа/поражение
-		battle <= Battle $mol_page
-			title \Битва
-			body /
-				<= Search_battle $mol_page title \Найти битву
-				<= Field $mol_page title \Поле битвы
-				<= Result_battle $mol_page title \Результат битвы
+		battle <= Battle $story_app_battle
 		- Доступные квесты
 		quest <= Quest $mol_page
 			title \Квесты
@@ -730,4 +744,8 @@ $story_app $mol_book2_catalog
 			title \Клан
 			body /
 				<= Join_clan $mol_page title \Вступить в клан
+		- Вики с игрой
+		wiki <= Wiki $mol_link
+			title \Об игре
+			uri \https://page.hyoo.ru/#!=sgmokp_sixci8
 

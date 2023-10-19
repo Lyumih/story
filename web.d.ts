@@ -2876,6 +2876,34 @@ declare namespace $.$$ {
 }
 
 declare namespace $ {
+    class $mol_button_major extends $mol_button_typed {
+        attr(): Record<string, any>;
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
+    class $story_app_battle_field extends $mol_list {
+        rows(): readonly any[];
+        Turn(): $$.$mol_text;
+        Field(): $$.$mol_text;
+        Skills(): $$.$mol_text;
+        EndTurn(): $mol_button_major;
+    }
+}
+
+declare namespace $ {
+    class $story_app_battle extends $mol_page {
+        title(): string;
+        body(): readonly any[];
+        Search_battle(): $mol_button_major;
+        Field(): $story_app_battle_field;
+    }
+}
+
+declare namespace $ {
     class $story_app extends $mol_book2_catalog {
         menu_title(): string;
         param(): string;
@@ -2889,16 +2917,14 @@ declare namespace $ {
         Settings(): $mol_page;
         Player(): $mol_page;
         Heroes_menu(): $$.$story_app_heroes;
-        Search_battle(): $mol_page;
-        Field(): $mol_page;
-        Result_battle(): $mol_page;
-        Battle(): $mol_page;
+        Battle(): $story_app_battle;
         Accept_quest(): $mol_page;
         Quest(): $mol_page;
         Accept_event(): $mol_page;
         Event(): $mol_page;
         Join_clan(): $mol_page;
         Clan(): $mol_page;
+        Wiki(): $$.$mol_link;
     }
 }
 
