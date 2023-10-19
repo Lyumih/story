@@ -13,7 +13,7 @@ namespace $.$$ {
 		}
 
 		y_list() {
-			return [ 1, 2, 3 ].map( y => this.X( y ) )
+			return [ 1, 2, 3, 4 ].map( y => this.X( y ) )
 		}
 
 		x_list( id_y: string ): readonly any[] {
