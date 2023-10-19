@@ -19,6 +19,7 @@ namespace $.$$ {
 					weapon: {
 						name: string,
 						description: string,
+						params: string,
 					}
 				}[]
 			}[]
@@ -34,7 +35,7 @@ namespace $.$$ {
 
 		hero_name( id: any ): string {
 			const hero = this.heroes().find( hero => hero[ '@rid' ] === id )
-			return hero ? `${ hero.name } - ${ hero.level } уровень` : ''
+			return hero ? `# ${ hero.name } - ${ hero.level } уровень` : ''
 		}
 
 		skill_list( id: string ): readonly any[] {
@@ -47,7 +48,7 @@ namespace $.$$ {
 		}
 
 		skill_name( id: any ): string {
-			return this.get_skill( id )?.skill.name || 'no skill'
+			return `*${this.get_skill( id )?.skill.name}*` || 'no skill'
 		}
 
 
@@ -57,6 +58,23 @@ namespace $.$$ {
 
 		skill_description( id: any ): string {
 			return this.get_skill( id )?.skill.description || 'no description'
+		}
+
+		weapon_list(id: string): readonly any[] {
+			return this.get_hero( id )?.weapons?.map( weapon => this.Weapon( id + '_' + weapon.in ) ) || []
+		}
+
+		get_weapon( ids: string ) {
+			const [ hero_id, weapon_id ] = ids.split( '_' )
+			return this.get_hero( hero_id )?.weapons.find( weapon => weapon.in === weapon_id )
+		}
+
+		weapon_name(id: string): string {
+			return `*${this.get_weapon( id )?.weapon.name}*` || 'no weapon name'
+		}
+
+		weapon_params(id:string): string {
+			return`${this.get_weapon( id )?.weapon.params}` || 'no params'
 		}
 	}
 }
