@@ -2896,7 +2896,8 @@ declare namespace $ {
     class $story_app_battle_field extends $mol_list {
         rows(): readonly any[];
         Turn(): $$.$mol_text;
-        Cell(id: any): $mol_button_minor;
+        cell_title(id: any): string;
+        Cell(id: any): $story_app_battle_field_cell;
         x_list(id: any): readonly any[];
         X(id: any): $mol_row;
         y_list(): readonly any[];
@@ -2912,6 +2913,7 @@ declare namespace $ {
     class $story_app_battle_field_cell extends $mol_button_minor {
         x(): number;
         y(): number;
+        title(): string;
     }
 }
 

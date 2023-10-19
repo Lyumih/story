@@ -10283,8 +10283,12 @@ var $;
             obj.text = () => "Ход: 2";
             return obj;
         }
+        cell_title(id) {
+            return "";
+        }
         Cell(id) {
-            const obj = new this.$.$mol_button_minor();
+            const obj = new this.$.$story_app_battle_field_cell();
+            obj.title = () => this.cell_title(id);
             return obj;
         }
         x_list(id) {
@@ -10388,6 +10392,9 @@ var $;
         y() {
             return 0;
         }
+        title() {
+            return "Герой";
+        }
     }
     $.$story_app_battle_field_cell = $story_app_battle_field_cell;
 })($ || ($ = {}));
@@ -10403,7 +10410,7 @@ var $;
                 console.log('skill', next);
             }
             y_list() {
-                return [1, 2, 3].map(y => this.X(y));
+                return [1, 2, 3, 4].map(y => this.X(y));
             }
             x_list(id_y) {
                 return [1, 2, 3].map(x => this.Cell(id_y + '_' + x));

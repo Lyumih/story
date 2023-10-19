@@ -704,7 +704,8 @@ $story_app_battle_field $mol_list
 		<= Field $mol_list rows /
 			<= Y $mol_list rows <= y_list /
 				<= X*0 $mol_row sub <= x_list* /
-					<= Cell*0_0 $mol_button_minor
+					<= Cell*0_0 $story_app_battle_field_cell
+						title <= cell_title* \
 		<= Skills $mol_text text \Умения
 		<= SkillPanel $mol_row sub /
 			<= Skill_1 $mol_button_minor
@@ -715,6 +716,7 @@ $story_app_battle_field $mol_list
 $story_app_battle_field_cell $mol_button_minor
 	x 0
 	y 0
+	title \Герой
 
 $story_app_battle $mol_page
 	title \Поле битвы
