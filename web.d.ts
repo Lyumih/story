@@ -2885,12 +2885,47 @@ declare namespace $ {
 }
 
 declare namespace $ {
+    class $mol_row extends $mol_view {
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
     class $story_app_battle_field extends $mol_list {
         rows(): readonly any[];
         Turn(): $$.$mol_text;
-        Field(): $$.$mol_text;
+        Cell(id: any): $mol_button_minor;
+        x_list(id: any): readonly any[];
+        X(id: any): $mol_row;
+        y_list(): readonly any[];
+        Y(): $$.$mol_list;
+        Field(): $$.$mol_list;
         Skills(): $$.$mol_text;
+        click_skill(next?: any): any;
+        Skill_1(): $mol_button_minor;
+        Skill_2(): $mol_button_minor;
+        SkillPanel(): $mol_row;
         EndTurn(): $mol_button_major;
+    }
+    class $story_app_battle_field_cell extends $mol_button_minor {
+        x(): number;
+        y(): number;
+    }
+}
+
+declare namespace $ {
+    type CellType = {
+        hero_id?: string;
+        active?: boolean;
+    };
+}
+declare namespace $.$$ {
+    class $story_app_battle_field extends $.$story_app_battle_field {
+        click_skill(next?: any): void;
+        y_list(): $mol_row[];
+        x_list(id_y: string): readonly any[];
     }
 }
 
@@ -2899,7 +2934,7 @@ declare namespace $ {
         title(): string;
         body(): readonly any[];
         Search_battle(): $mol_button_major;
-        Field(): $story_app_battle_field;
+        Field(): $$.$story_app_battle_field;
     }
 }
 

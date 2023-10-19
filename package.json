@@ -204,7 +204,8 @@
     "$story_fetch",
     "$story_app_battle",
     "$mol_button_major",
-    "$story_app_battle_field"
+    "$story_app_battle_field",
+    "$mol_row"
   ],
   "dependencies": {
     "jsdom": "*",

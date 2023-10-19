@@ -10244,12 +10244,29 @@ var $;
 "use strict";
 var $;
 (function ($) {
+    class $mol_row extends $mol_view {
+    }
+    $.$mol_row = $mol_row;
+})($ || ($ = {}));
+//mol/row/-view.tree/row.view.tree.ts
+;
+"use strict";
+var $;
+(function ($) {
+    $mol_style_attach("mol/row/row.view.css", "[mol_row] {\n\tdisplay: flex;\n\tflex-wrap: wrap;\n\talign-items: flex-start;\n\talign-content: flex-start;\n\tjustify-content: flex-start;\n\tpadding: var(--mol_gap_block);\n\tgap: var(--mol_gap_block);\n\tflex: 0 0 auto;\n\tbox-sizing: border-box;\n\tmax-width: 100%;\n}\n\n[mol_row] > * {\n\tmax-width: 100%;\n}\n");
+})($ || ($ = {}));
+//mol/row/-css/row.view.css.ts
+;
+"use strict";
+var $;
+(function ($) {
     class $story_app_battle_field extends $mol_list {
         rows() {
             return [
                 this.Turn(),
                 this.Field(),
                 this.Skills(),
+                this.SkillPanel(),
                 this.EndTurn()
             ];
         }
@@ -10258,14 +10275,62 @@ var $;
             obj.text = () => "Ход: 2";
             return obj;
         }
+        Cell(id) {
+            const obj = new this.$.$mol_button_minor();
+            return obj;
+        }
+        x_list(id) {
+            return [
+                this.Cell("0_0")
+            ];
+        }
+        X(id) {
+            const obj = new this.$.$mol_row();
+            obj.sub = () => this.x_list(id);
+            return obj;
+        }
+        y_list() {
+            return [
+                this.X("0")
+            ];
+        }
+        Y() {
+            const obj = new this.$.$mol_list();
+            obj.rows = () => this.y_list();
+            return obj;
+        }
         Field() {
-            const obj = new this.$.$mol_text();
-            obj.text = () => "Поле битвы. x x x x x x x";
+            const obj = new this.$.$mol_list();
+            obj.rows = () => [
+                this.Y()
+            ];
             return obj;
         }
         Skills() {
             const obj = new this.$.$mol_text();
             obj.text = () => "Умения";
+            return obj;
+        }
+        click_skill(next) {
+            if (next !== undefined)
+                return next;
+            return null;
+        }
+        Skill_1() {
+            const obj = new this.$.$mol_button_minor();
+            obj.click = (next) => this.click_skill(next);
+            return obj;
+        }
+        Skill_2() {
+            const obj = new this.$.$mol_button_minor();
+            return obj;
+        }
+        SkillPanel() {
+            const obj = new this.$.$mol_row();
+            obj.sub = () => [
+                this.Skill_1(),
+                this.Skill_2()
+            ];
             return obj;
         }
         EndTurn() {
@@ -10278,6 +10343,15 @@ var $;
         $mol_mem
     ], $story_app_battle_field.prototype, "Turn", null);
     __decorate([
+        $mol_mem_key
+    ], $story_app_battle_field.prototype, "Cell", null);
+    __decorate([
+        $mol_mem_key
+    ], $story_app_battle_field.prototype, "X", null);
+    __decorate([
+        $mol_mem
+    ], $story_app_battle_field.prototype, "Y", null);
+    __decorate([
         $mol_mem
     ], $story_app_battle_field.prototype, "Field", null);
     __decorate([
@@ -10285,10 +10359,52 @@ var $;
     ], $story_app_battle_field.prototype, "Skills", null);
     __decorate([
         $mol_mem
+    ], $story_app_battle_field.prototype, "click_skill", null);
+    __decorate([
+        $mol_mem
+    ], $story_app_battle_field.prototype, "Skill_1", null);
+    __decorate([
+        $mol_mem
+    ], $story_app_battle_field.prototype, "Skill_2", null);
+    __decorate([
+        $mol_mem
+    ], $story_app_battle_field.prototype, "SkillPanel", null);
+    __decorate([
+        $mol_mem
     ], $story_app_battle_field.prototype, "EndTurn", null);
     $.$story_app_battle_field = $story_app_battle_field;
+    class $story_app_battle_field_cell extends $mol_button_minor {
+        x() {
+            return 0;
+        }
+        y() {
+            return 0;
+        }
+    }
+    $.$story_app_battle_field_cell = $story_app_battle_field_cell;
 })($ || ($ = {}));
 //story/app/battle/field/-view.tree/field.view.tree.ts
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        class $story_app_battle_field extends $.$story_app_battle_field {
+            click_skill(next) {
+                console.log('skill', next);
+            }
+            y_list() {
+                return [1, 2, 3].map(y => this.X(y));
+            }
+            x_list(id_y) {
+                return [1, 2, 3].map(x => this.Cell(id_y + '_' + x));
+            }
+        }
+        $$.$story_app_battle_field = $story_app_battle_field;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+//story/app/battle/field/field.view.ts
 ;
 "use strict";
 var $;
