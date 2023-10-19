@@ -9889,54 +9889,6 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    class $mol_labeler extends $mol_list {
-        rows() {
-            return [
-                this.Label(),
-                this.Content()
-            ];
-        }
-        label() {
-            return [
-                this.title()
-            ];
-        }
-        Label() {
-            const obj = new this.$.$mol_view();
-            obj.minimal_height = () => 32;
-            obj.sub = () => this.label();
-            return obj;
-        }
-        content() {
-            return [];
-        }
-        Content() {
-            const obj = new this.$.$mol_view();
-            obj.minimal_height = () => 24;
-            obj.sub = () => this.content();
-            return obj;
-        }
-    }
-    __decorate([
-        $mol_mem
-    ], $mol_labeler.prototype, "Label", null);
-    __decorate([
-        $mol_mem
-    ], $mol_labeler.prototype, "Content", null);
-    $.$mol_labeler = $mol_labeler;
-})($ || ($ = {}));
-//mol/labeler/-view.tree/labeler.view.tree.ts
-;
-"use strict";
-var $;
-(function ($) {
-    $mol_style_attach("mol/labeler/labeler.view.css", "[mol_labeler] {\n\tdisplay: flex;\n\tflex-direction: column;\n\talign-items: stretch;\n\tcursor: inherit;\n}\n\n[mol_labeler_label] {\n\tmin-height: 2rem;\n\tcolor: var(--mol_theme_shade);\n\tpadding: .5rem .75rem 0;\n\tgap: 0 var(--mol_gap_block);\n\tflex-wrap: wrap;\n}\n\n[mol_labeler_content] {\n\tdisplay: flex;\n\tpadding: var(--mol_gap_text);\n}\n");
-})($ || ($ = {}));
-//mol/labeler/-css/labeler.view.css.ts
-;
-"use strict";
-var $;
-(function ($) {
     class $mol_text_list extends $mol_text {
         auto_scroll() {
             return null;
@@ -10004,9 +9956,14 @@ var $;
         hero_name(id) {
             return "";
         }
+        Hero_name(id) {
+            const obj = new this.$.$mol_text();
+            obj.text = () => this.hero_name(id);
+            return obj;
+        }
         Skill_text(id) {
             const obj = new this.$.$mol_text();
-            obj.text = () => "Умения";
+            obj.text = () => "**Умения**";
             return obj;
         }
         skill_name(id) {
@@ -10054,39 +10011,39 @@ var $;
         }
         Weapons_text(id) {
             const obj = new this.$.$mol_text();
-            obj.text = () => "Оружие";
+            obj.text = () => "**Оружие**";
             return obj;
         }
-        weapon_name() {
+        weapon_name(id) {
             return "";
         }
         Weapon_name(id) {
             const obj = new this.$.$mol_text();
-            obj.text = () => this.weapon_name();
+            obj.text = () => this.weapon_name(id);
             return obj;
         }
-        weapon_level() {
+        weapon_level(id) {
             return "";
         }
         Weapon_level(id) {
             const obj = new this.$.$mol_text();
-            obj.text = () => this.weapon_level();
+            obj.text = () => this.weapon_level(id);
             return obj;
         }
-        weapon_type() {
+        weapon_type(id) {
             return "";
         }
         Weapon_type(id) {
             const obj = new this.$.$mol_text();
-            obj.text = () => this.weapon_type();
+            obj.text = () => this.weapon_type(id);
             return obj;
         }
-        weapon_params() {
+        weapon_params(id) {
             return "";
         }
         Weapon_params(id) {
             const obj = new this.$.$mol_text();
-            obj.text = () => this.weapon_params();
+            obj.text = () => this.weapon_params(id);
             return obj;
         }
         Weapon(id) {
@@ -10099,31 +10056,24 @@ var $;
             ];
             return obj;
         }
-        weapon_list() {
+        weapon_list(id) {
             return [
                 this.Weapon("0_0")
             ];
         }
         Weapons(id) {
             const obj = new this.$.$mol_list();
-            obj.rows = () => this.weapon_list();
+            obj.rows = () => this.weapon_list(id);
             return obj;
         }
-        Hero_name(id) {
-            const obj = new this.$.$mol_labeler();
-            obj.title = () => this.hero_name(id);
-            obj.content = () => [
+        Hero(id) {
+            const obj = new this.$.$mol_list();
+            obj.rows = () => [
+                this.Hero_name(id),
                 this.Skill_text(id),
                 this.Skills(id),
                 this.Weapons_text(id),
                 this.Weapons(id)
-            ];
-            return obj;
-        }
-        Hero(id) {
-            const obj = new this.$.$mol_view();
-            obj.sub = () => [
-                this.Hero_name(id)
             ];
             return obj;
         }
@@ -10141,6 +10091,9 @@ var $;
     __decorate([
         $mol_mem
     ], $story_app_heroes.prototype, "Party", null);
+    __decorate([
+        $mol_mem_key
+    ], $story_app_heroes.prototype, "Hero_name", null);
     __decorate([
         $mol_mem_key
     ], $story_app_heroes.prototype, "Skill_text", null);
@@ -10180,9 +10133,6 @@ var $;
     __decorate([
         $mol_mem_key
     ], $story_app_heroes.prototype, "Weapons", null);
-    __decorate([
-        $mol_mem_key
-    ], $story_app_heroes.prototype, "Hero_name", null);
     __decorate([
         $mol_mem_key
     ], $story_app_heroes.prototype, "Hero", null);
@@ -10229,7 +10179,7 @@ var $;
             }
             hero_name(id) {
                 const hero = this.heroes().find(hero => hero['@rid'] === id);
-                return hero ? `${hero.name} - ${hero.level} уровень` : '';
+                return hero ? `# ${hero.name} - ${hero.level} уровень` : '';
             }
             skill_list(id) {
                 return this.get_hero(id)?.skills?.map(skill => this.Skill(id + '_' + skill.in)) || [];
@@ -10239,13 +10189,26 @@ var $;
                 return this.get_hero(hero_id)?.skills.find(skill => skill.in === skill_id);
             }
             skill_name(id) {
-                return this.get_skill(id)?.skill.name || 'no skill';
+                return `*${this.get_skill(id)?.skill.name}*` || 'no skill';
             }
             skill_level(id) {
                 return 'Ур. ' + this.get_skill(id)?.level;
             }
             skill_description(id) {
                 return this.get_skill(id)?.skill.description || 'no description';
+            }
+            weapon_list(id) {
+                return this.get_hero(id)?.weapons?.map(weapon => this.Weapon(id + '_' + weapon.in)) || [];
+            }
+            get_weapon(ids) {
+                const [hero_id, weapon_id] = ids.split('_');
+                return this.get_hero(hero_id)?.weapons.find(weapon => weapon.in === weapon_id);
+            }
+            weapon_name(id) {
+                return `*${this.get_weapon(id)?.weapon.name}*` || 'no weapon name';
+            }
+            weapon_params(id) {
+                return `${this.get_weapon(id)?.weapon.params}` || 'no params';
             }
         }
         __decorate([

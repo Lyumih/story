@@ -2872,19 +2872,6 @@ declare namespace $ {
 }
 
 declare namespace $ {
-    class $mol_labeler extends $mol_list {
-        rows(): readonly any[];
-        label(): readonly $mol_view_content[];
-        Label(): $mol_view;
-        content(): readonly any[];
-        Content(): $mol_view;
-    }
-}
-
-declare namespace $ {
-}
-
-declare namespace $ {
     class $mol_text_list extends $mol_text {
         auto_scroll(): any;
         attr(): Record<string, any>;
@@ -2906,6 +2893,7 @@ declare namespace $ {
         body(): readonly any[];
         Party(): $mol_page;
         hero_name(id: any): string;
+        Hero_name(id: any): $$.$mol_text;
         Skill_text(id: any): $$.$mol_text;
         skill_name(id: any): string;
         Skill_name(id: any): $$.$mol_text;
@@ -2917,19 +2905,18 @@ declare namespace $ {
         skill_list(id: any): readonly any[];
         Skills(id: any): $$.$mol_list;
         Weapons_text(id: any): $$.$mol_text;
-        weapon_name(): string;
+        weapon_name(id: any): string;
         Weapon_name(id: any): $$.$mol_text;
-        weapon_level(): string;
+        weapon_level(id: any): string;
         Weapon_level(id: any): $$.$mol_text;
-        weapon_type(): string;
+        weapon_type(id: any): string;
         Weapon_type(id: any): $$.$mol_text;
-        weapon_params(): string;
+        weapon_params(id: any): string;
         Weapon_params(id: any): $$.$mol_text;
         Weapon(id: any): $mol_view;
-        weapon_list(): readonly any[];
+        weapon_list(id: any): readonly any[];
         Weapons(id: any): $$.$mol_list;
-        Hero_name(id: any): $mol_labeler;
-        Hero(id: any): $mol_view;
+        Hero(id: any): $$.$mol_list;
         heroes_list(): readonly any[];
         Heroes_list(): $$.$mol_list;
     }
@@ -2963,6 +2950,7 @@ declare namespace $.$$ {
                 weapon: {
                     name: string;
                     description: string;
+                    params: string;
                 };
             }[];
         }[];
@@ -2984,6 +2972,7 @@ declare namespace $.$$ {
                 weapon: {
                     name: string;
                     description: string;
+                    params: string;
                 };
             }[];
         } | undefined;
@@ -3001,6 +2990,18 @@ declare namespace $.$$ {
         skill_name(id: any): string;
         skill_level(id: any): string;
         skill_description(id: any): string;
+        weapon_list(id: string): readonly any[];
+        get_weapon(ids: string): {
+            level: number;
+            in: string;
+            weapon: {
+                name: string;
+                description: string;
+                params: string;
+            };
+        } | undefined;
+        weapon_name(id: string): string;
+        weapon_params(id: string): string;
     }
 }
 

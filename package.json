@@ -201,7 +201,6 @@
     "$mol_embed_youtube",
     "$mol_icon_youtube",
     "$mol_frame",
-    "$mol_labeler",
     "$story_fetch"
   ],
   "dependencies": {
