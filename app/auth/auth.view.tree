@@ -5,11 +5,16 @@ $story_app_auth $mol_page
 			form_fields /
 				<= Name $mol_string
 					hint \Имя
-					value? <=> name? null
+					value? <=> name? \
 			buttons /
 				<= Login $mol_button_major
 					title \Войти
 					click? <=> login? null
+					enabled? <= valid? false
 				<= Registration $mol_button_minor
 					title \Регистрация
 					click? <=> registration? null
+					enabled? <= valid? false
+				<= Demo $mol_button_minor
+					title \Демо
+					click? <=> demo? null

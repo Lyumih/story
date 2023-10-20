@@ -2,6 +2,11 @@ $story_app $mol_book2_catalog
 	menu_title \История
 	param \page
 	Placeholder null
+	menu_tools /
+		<= GitHub $mol_link_source uri \https://github.com/Lyumih/story
+		<= Telegram $mol_link
+			title <= Telegram_icon $mol_icon_telegram
+			uri \https://t.me/h_y_o_o/4484
 	Spread_default <= Statistics $mol_page
 		title \Статистика
 		body / <= Statistics_text $mol_page title \Битв: 42

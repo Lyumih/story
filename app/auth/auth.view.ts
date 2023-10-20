@@ -8,6 +8,20 @@ namespace $.$$ {
 
 		registration( next?: any ) {
 			console.log('registration')
+			const result = this.$.$story_fetch.json_post( `/auth/login`, {
+				body: JSON.stringify({
+					name: this.name()
+				})
+			})
+		}
+
+		valid() {
+			return this.name()?.length > 3
+		}
+
+		demo( next?: any ) {
+			this.name('Mikhail')
+			this.login()
 		}
 		
 	}

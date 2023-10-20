@@ -2,7 +2,7 @@ namespace $ {
 	export class $story_fetch extends $mol_fetch {
 		static json( url: string, init?: RequestInit ) {
 			const back_url = 'http://localhost:3000/api/v1'
-			return super.json( ( back_url + url ) )
+			return super.json( ( back_url + url ), init )
 		}
 
 		static json_post( url: string, init?: RequestInit ) {
