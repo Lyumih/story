@@ -1,4 +1,4 @@
 $story_app_stats $mol_list
 	rows /
-		<= Player $mol_text text \Mikhail
+		<= Player $mol_text text <= player_name \
 		<= Group $mol_text text \Отряд 1, 2, 3
