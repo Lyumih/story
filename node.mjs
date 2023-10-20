@@ -7208,6 +7208,54 @@ var $;
 "use strict";
 var $;
 (function ($) {
+    class $mol_icon_github_circle extends $mol_icon {
+        path() {
+            return "M12,2C6.48,2 2,6.48 2,12C2,16.42 4.87,20.17 8.84,21.5C9.34,21.58 9.5,21.27 9.5,21C9.5,20.77 9.5,20.14 9.5,19.31C6.73,19.91 6.14,17.97 6.14,17.97C5.68,16.81 5.03,16.5 5.03,16.5C4.12,15.88 5.1,15.9 5.1,15.9C6.1,15.97 6.63,16.93 6.63,16.93C7.5,18.45 8.97,18 9.54,17.76C9.63,17.11 9.89,16.67 10.17,16.42C7.95,16.17 5.62,15.31 5.62,11.5C5.62,10.39 6,9.5 6.65,8.79C6.55,8.54 6.2,7.5 6.75,6.15C6.75,6.15 7.59,5.88 9.5,7.17C10.29,6.95 11.15,6.84 12,6.84C12.85,6.84 13.71,6.95 14.5,7.17C16.41,5.88 17.25,6.15 17.25,6.15C17.8,7.5 17.45,8.54 17.35,8.79C18,9.5 18.38,10.39 18.38,11.5C18.38,15.32 16.04,16.16 13.81,16.41C14.17,16.72 14.5,17.33 14.5,18.26C14.5,19.6 14.5,20.68 14.5,21C14.5,21.27 14.66,21.59 15.17,21.5C19.14,20.16 22,16.42 22,12C22,6.48 17.52,2 12,2Z";
+        }
+    }
+    $.$mol_icon_github_circle = $mol_icon_github_circle;
+})($ || ($ = {}));
+//mol/icon/github/circle/-view.tree/circle.view.tree.ts
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_link_source extends $mol_link {
+        hint() {
+            return this.$.$mol_locale.text('$mol_link_source_hint');
+        }
+        sub() {
+            return [
+                this.Icon()
+            ];
+        }
+        Icon() {
+            const obj = new this.$.$mol_icon_github_circle();
+            return obj;
+        }
+    }
+    __decorate([
+        $mol_mem
+    ], $mol_link_source.prototype, "Icon", null);
+    $.$mol_link_source = $mol_link_source;
+})($ || ($ = {}));
+//mol/link/source/-view.tree/source.view.tree.ts
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_icon_telegram extends $mol_icon {
+        path() {
+            return "M9.78,18.65L10.06,14.42L17.74,7.5C18.08,7.19 17.67,7.04 17.22,7.31L7.74,13.3L3.64,12C2.76,11.75 2.75,11.14 3.84,10.7L19.81,4.54C20.54,4.21 21.24,4.72 20.96,5.84L18.24,18.65C18.05,19.56 17.5,19.78 16.74,19.36L12.6,16.3L10.61,18.23C10.38,18.46 10.19,18.65 9.78,18.65Z";
+        }
+    }
+    $.$mol_icon_telegram = $mol_icon_telegram;
+})($ || ($ = {}));
+//mol/icon/telegram/-view.tree/telegram.view.tree.ts
+;
+"use strict";
+var $;
+(function ($) {
     class $mol_stack extends $mol_view {
     }
     $.$mol_stack = $mol_stack;
@@ -10188,7 +10236,7 @@ var $;
     class $story_fetch extends $mol_fetch {
         static json(url, init) {
             const back_url = 'http://localhost:3000/api/v1';
-            return super.json((back_url + url));
+            return super.json((back_url + url), init);
         }
         static json_post(url, init) {
             return this.json(url, { method: 'POST', ...init });
@@ -10766,7 +10814,7 @@ var $;
         name(next) {
             if (next !== undefined)
                 return next;
-            return null;
+            return "";
         }
         Name() {
             const obj = new this.$.$mol_string();
@@ -10779,10 +10827,16 @@ var $;
                 return next;
             return null;
         }
+        valid(next) {
+            if (next !== undefined)
+                return next;
+            return false;
+        }
         Login() {
             const obj = new this.$.$mol_button_major();
             obj.title = () => "Войти";
             obj.click = (next) => this.login(next);
+            obj.enabled = (next) => this.valid();
             return obj;
         }
         registration(next) {
@@ -10794,6 +10848,18 @@ var $;
             const obj = new this.$.$mol_button_minor();
             obj.title = () => "Регистрация";
             obj.click = (next) => this.registration(next);
+            obj.enabled = (next) => this.valid();
+            return obj;
+        }
+        demo(next) {
+            if (next !== undefined)
+                return next;
+            return null;
+        }
+        Demo() {
+            const obj = new this.$.$mol_button_minor();
+            obj.title = () => "Демо";
+            obj.click = (next) => this.demo(next);
             return obj;
         }
         Login_form() {
@@ -10803,7 +10869,8 @@ var $;
             ];
             obj.buttons = () => [
                 this.Login(),
-                this.Registration()
+                this.Registration(),
+                this.Demo()
             ];
             return obj;
         }
@@ -10819,6 +10886,9 @@ var $;
     ], $story_app_auth.prototype, "login", null);
     __decorate([
         $mol_mem
+    ], $story_app_auth.prototype, "valid", null);
+    __decorate([
+        $mol_mem
     ], $story_app_auth.prototype, "Login", null);
     __decorate([
         $mol_mem
@@ -10826,6 +10896,12 @@ var $;
     __decorate([
         $mol_mem
     ], $story_app_auth.prototype, "Registration", null);
+    __decorate([
+        $mol_mem
+    ], $story_app_auth.prototype, "demo", null);
+    __decorate([
+        $mol_mem
+    ], $story_app_auth.prototype, "Demo", null);
     __decorate([
         $mol_mem
     ], $story_app_auth.prototype, "Login_form", null);
@@ -10845,6 +10921,18 @@ var $;
             }
             registration(next) {
                 console.log('registration');
+                const result = this.$.$story_fetch.json_post(`/auth/login`, {
+                    body: JSON.stringify({
+                        name: this.name()
+                    })
+                });
+            }
+            valid() {
+                return this.name()?.length > 3;
+            }
+            demo(next) {
+                this.name('Mikhail');
+                this.login();
             }
         }
         $$.$story_app_auth = $story_app_auth;
@@ -10864,6 +10952,12 @@ var $;
         }
         Placeholder() {
             return null;
+        }
+        menu_tools() {
+            return [
+                this.GitHub(),
+                this.Telegram()
+            ];
         }
         Spread_default() {
             return this.Statistics();
@@ -10885,6 +10979,23 @@ var $;
                 wiki: this.Wiki(),
                 auth: this.Auth()
             };
+        }
+        GitHub() {
+            const obj = new this.$.$mol_link_source();
+            obj.uri = () => "https://github.com/Lyumih/story";
+            return obj;
+        }
+        Telegram_icon() {
+            const obj = new this.$.$mol_icon_telegram();
+            return obj;
+        }
+        Telegram() {
+            const obj = new this.$.$mol_link();
+            obj.sub = () => [
+                this.Telegram_icon()
+            ];
+            obj.uri = () => "https://t.me/h_y_o_o/4484";
+            return obj;
         }
         Statistics_text() {
             const obj = new this.$.$mol_page();
@@ -10986,6 +11097,15 @@ var $;
             return obj;
         }
     }
+    __decorate([
+        $mol_mem
+    ], $story_app.prototype, "GitHub", null);
+    __decorate([
+        $mol_mem
+    ], $story_app.prototype, "Telegram_icon", null);
+    __decorate([
+        $mol_mem
+    ], $story_app.prototype, "Telegram", null);
     __decorate([
         $mol_mem
     ], $story_app.prototype, "Statistics_text", null);

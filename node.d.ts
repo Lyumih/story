@@ -2095,6 +2095,26 @@ declare namespace $ {
 }
 
 declare namespace $ {
+    class $mol_icon_github_circle extends $mol_icon {
+        path(): string;
+    }
+}
+
+declare namespace $ {
+    class $mol_link_source extends $mol_link {
+        hint(): string;
+        sub(): readonly any[];
+        Icon(): $mol_icon_github_circle;
+    }
+}
+
+declare namespace $ {
+    class $mol_icon_telegram extends $mol_icon {
+        path(): string;
+    }
+}
+
+declare namespace $ {
     class $mol_stack extends $mol_view {
     }
 }
@@ -3152,12 +3172,15 @@ declare namespace $ {
     class $story_app_auth extends $mol_page {
         title(): string;
         body(): readonly any[];
-        name(next?: any): any;
+        name(next?: any): string;
         Name(): $$.$mol_string;
         login(next?: any): any;
+        valid(next?: any): boolean;
         Login(): $mol_button_major;
         registration(next?: any): any;
         Registration(): $mol_button_minor;
+        demo(next?: any): any;
+        Demo(): $mol_button_minor;
         Login_form(): $$.$mol_form;
     }
 }
@@ -3166,6 +3189,8 @@ declare namespace $.$$ {
     class $story_app_auth extends $.$story_app_auth {
         login(next?: any): void;
         registration(next?: any): void;
+        valid(): boolean;
+        demo(next?: any): void;
     }
 }
 
@@ -3174,9 +3199,13 @@ declare namespace $ {
         menu_title(): string;
         param(): string;
         Placeholder(): any;
+        menu_tools(): readonly any[];
         Spread_default(): $mol_page;
         menu_body(): readonly any[];
         spreads(): Record<string, any>;
+        GitHub(): $mol_link_source;
+        Telegram_icon(): $mol_icon_telegram;
+        Telegram(): $$.$mol_link;
         Statistics_text(): $mol_page;
         Statistics(): $mol_page;
         Stats(): $story_app_stats;
