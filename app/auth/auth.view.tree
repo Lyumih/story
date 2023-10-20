@@ -1,0 +1,15 @@
+$story_app_auth $mol_page
+	title \Авторизация
+	body /
+		<= Login_form $mol_form
+			form_fields /
+				<= Name $mol_string
+					hint \Имя
+					value? <=> name? null
+			buttons /
+				<= Login $mol_button_major
+					title \Войти
+					click? <=> login? null
+				<= Registration $mol_button_minor
+					title \Регистрация
+					click? <=> registration? null

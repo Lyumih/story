@@ -36,4 +36,6 @@ $story_app $mol_book2_catalog
 		wiki <= Wiki $mol_link
 			title \Об игре
 			uri \https://page.hyoo.ru/#!=sgmokp_sixci8
+		- Авторизация и регистрация
+		auth <= Auth $story_app_auth
 

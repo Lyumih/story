@@ -1,0 +1,20 @@
+[story_app_battle_field_cell]{
+	width: 60px;
+	height: 60px;
+	background-image: url(https://w7.pngwing.com/pngs/1020/831/png-transparent-gray-surface-illustration-mixed-martial-arts-heavyweight-octagon-boxing-rings-combat-mma-fight-flyer-angle-rectangle-sports.png);
+	background-size: cover;
+	background-position: center;
+}
+
+[story_app_battle_field_cell][active='true'] {
+	box-shadow: 0 0 10px red;
+}
+
+[story_app_battle_field_cell][type='hero'] {
+	background-color: lightblue;
+}
+
+[story_app_battle_field_cell][type='enemy'] {
+	background-color: lightpink;
+}
+
