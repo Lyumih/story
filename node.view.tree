@@ -667,6 +667,11 @@ $mol_text_list_item $mol_paragraph
 		^
 		mol_text_list_item_index <= index 0
 
+$story_app_stats $mol_list
+	rows /
+		<= Player $mol_text text \Mikhail
+		<= Group $mol_text text \Отряд 1, 2, 3
+
 $story_app_heroes $mol_page
 	title \Герои
 	body /
@@ -782,6 +787,9 @@ $story_app $mol_book2_catalog
 	Spread_default <= Statistics $mol_page
 		title \Статистика
 		body / <= Statistics_text $mol_page title \Битв: 42
+	menu_body /
+		<= Stats $story_app_stats
+		<= Menu_links
 	spreads *
 		- Персонаж: инвентарь, реликвии
 		player <= Player $mol_page

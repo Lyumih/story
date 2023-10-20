@@ -2872,6 +2872,14 @@ declare namespace $ {
 }
 
 declare namespace $ {
+    class $story_app_stats extends $mol_list {
+        rows(): readonly any[];
+        Player(): $$.$mol_text;
+        Group(): $$.$mol_text;
+    }
+}
+
+declare namespace $ {
     class $mol_text_list extends $mol_text {
         auto_scroll(): any;
         attr(): Record<string, any>;
@@ -3167,9 +3175,11 @@ declare namespace $ {
         param(): string;
         Placeholder(): any;
         Spread_default(): $mol_page;
+        menu_body(): readonly any[];
         spreads(): Record<string, any>;
         Statistics_text(): $mol_page;
         Statistics(): $mol_page;
+        Stats(): $story_app_stats;
         Inventory(): $mol_page;
         Relic(): $mol_page;
         Settings(): $mol_page;

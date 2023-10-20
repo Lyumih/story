@@ -9897,6 +9897,37 @@ var $;
 "use strict";
 var $;
 (function ($) {
+    class $story_app_stats extends $mol_list {
+        rows() {
+            return [
+                this.Player(),
+                this.Group()
+            ];
+        }
+        Player() {
+            const obj = new this.$.$mol_text();
+            obj.text = () => "Mikhail";
+            return obj;
+        }
+        Group() {
+            const obj = new this.$.$mol_text();
+            obj.text = () => "Отряд 1, 2, 3";
+            return obj;
+        }
+    }
+    __decorate([
+        $mol_mem
+    ], $story_app_stats.prototype, "Player", null);
+    __decorate([
+        $mol_mem
+    ], $story_app_stats.prototype, "Group", null);
+    $.$story_app_stats = $story_app_stats;
+})($ || ($ = {}));
+//story/app/stats/-view.tree/stats.view.tree.ts
+;
+"use strict";
+var $;
+(function ($) {
     class $mol_text_list extends $mol_text {
         auto_scroll() {
             return null;
@@ -10810,6 +10841,7 @@ var $;
         class $story_app_auth extends $.$story_app_auth {
             login(next) {
                 console.log('login');
+                const result = this.$.$story_fetch.json(`/auth/login?name=${this.name()}`);
             }
             registration(next) {
                 console.log('registration');
@@ -10836,6 +10868,12 @@ var $;
         Spread_default() {
             return this.Statistics();
         }
+        menu_body() {
+            return [
+                this.Stats(),
+                this.Menu_links()
+            ];
+        }
         spreads() {
             return {
                 player: this.Player(),
@@ -10859,6 +10897,10 @@ var $;
             obj.body = () => [
                 this.Statistics_text()
             ];
+            return obj;
+        }
+        Stats() {
+            const obj = new this.$.$story_app_stats();
             return obj;
         }
         Inventory() {
@@ -10950,6 +10992,9 @@ var $;
     __decorate([
         $mol_mem
     ], $story_app.prototype, "Statistics", null);
+    __decorate([
+        $mol_mem
+    ], $story_app.prototype, "Stats", null);
     __decorate([
         $mol_mem
     ], $story_app.prototype, "Inventory", null);
