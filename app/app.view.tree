@@ -3,6 +3,10 @@ $story_app $mol_book2_catalog
 	param \page
 	Placeholder null
 	menu_tools /
+		<= Logout $mol_button_minor
+			sub / <= Logout_icon $mol_icon_logout
+			click? <=> logout? null
+	menu_foot /
 		<= GitHub $mol_link_source uri \https://github.com/Lyumih/story
 		<= Telegram $mol_link
 			sub / <= Telegram_icon $mol_icon_telegram
@@ -12,6 +16,7 @@ $story_app $mol_book2_catalog
 		body / <= Statistics_text $mol_page title \Битв: 42
 	menu_body /
 		<= Stats $story_app_stats
+		<= Auth $story_app_auth
 		<= Menu_links
 	spreads *
 		- Персонаж: инвентарь, реликвии
@@ -44,6 +49,4 @@ $story_app $mol_book2_catalog
 		wiki <= Wiki $mol_link
 			title \Об игре
 			uri \https://page.hyoo.ru/#!=sgmokp_sixci8
-		- Авторизация и регистрация
-		auth <= Auth $story_app_auth
 

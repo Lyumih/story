@@ -1,6 +1,5 @@
-$story_app_auth $mol_page
-	title \Авторизация
-	body /
+$story_app_auth $mol_list
+	rows /
 		<= Login_form $mol_form
 			form_fields /
 				<= Name $mol_string

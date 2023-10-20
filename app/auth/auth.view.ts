@@ -22,6 +22,10 @@ namespace $.$$ {
 			return this.$.$mol_state_local.value('player') as {name: string}
 		}
 
+		static logout() {
+			this.$.$mol_state_local.value('player', null)
+		}
+
 		valid() {
 			return this.name()?.length > 3
 		}
