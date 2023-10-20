@@ -5,6 +5,9 @@ $story_app $mol_book2_catalog
 	Spread_default <= Statistics $mol_page
 		title \Статистика
 		body / <= Statistics_text $mol_page title \Битв: 42
+	menu_body /
+		<= Stats $story_app_stats
+		<= Menu_links
 	spreads *
 		- Персонаж: инвентарь, реликвии
 		player <= Player $mol_page
