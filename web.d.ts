@@ -1969,6 +1969,12 @@ declare namespace $ {
 }
 
 declare namespace $ {
+    class $mol_icon_logout extends $mol_icon {
+        path(): string;
+    }
+}
+
+declare namespace $ {
     class $mol_icon_github_circle extends $mol_icon {
         path(): string;
     }
@@ -2867,9 +2873,8 @@ declare namespace $ {
 }
 
 declare namespace $ {
-    class $story_app_auth extends $mol_page {
-        title(): string;
-        body(): readonly any[];
+    class $story_app_auth extends $mol_list {
+        rows(): readonly any[];
         name(next?: any): string;
         Name(): $$.$mol_string;
         login(next?: any): any;
@@ -2898,6 +2903,7 @@ declare namespace $.$$ {
         static player(): {
             name: string;
         };
+        static logout(): void;
         valid(): boolean;
         demo(next?: any): void;
     }
@@ -3080,15 +3086,20 @@ declare namespace $ {
         param(): string;
         Placeholder(): any;
         menu_tools(): readonly any[];
+        menu_foot(): readonly any[];
         Spread_default(): $mol_page;
         menu_body(): readonly any[];
         spreads(): Record<string, any>;
+        Logout_icon(): $mol_icon_logout;
+        logout(next?: any): any;
+        Logout(): $mol_button_minor;
         GitHub(): $mol_link_source;
         Telegram_icon(): $mol_icon_telegram;
         Telegram(): $$.$mol_link;
         Statistics_text(): $mol_page;
         Statistics(): $mol_page;
         Stats(): $$.$story_app_stats;
+        Auth(): $$.$story_app_auth;
         Inventory(): $mol_page;
         Relic(): $mol_page;
         Settings(): $mol_page;
@@ -3102,7 +3113,13 @@ declare namespace $ {
         Join_clan(): $mol_page;
         Clan(): $mol_page;
         Wiki(): $$.$mol_link;
-        Auth(): $$.$story_app_auth;
+    }
+}
+
+declare namespace $.$$ {
+    class $story_app extends $.$story_app {
+        logout(next?: any): void;
+        menu_body(): readonly any[];
     }
 }
 
