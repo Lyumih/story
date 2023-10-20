@@ -205,16 +205,16 @@
     "$mol_embed_youtube",
     "$mol_icon_youtube",
     "$mol_frame",
-    "$story_app_heroes",
-    "$story_fetch",
-    "$story_app_battle",
-    "$mol_button_major",
-    "$story_app_battle_field",
-    "$mol_row",
     "$story_app_auth",
+    "$mol_button_major",
     "$mol_form",
     "$mol_form_field",
-    "$mol_labeler"
+    "$mol_labeler",
+    "$mol_row",
+    "$story_fetch",
+    "$story_app_heroes",
+    "$story_app_battle",
+    "$story_app_battle_field"
   ],
   "dependencies": {
     "jsdom": "*",

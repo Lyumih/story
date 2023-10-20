@@ -2762,14 +2762,6 @@ declare namespace $ {
 }
 
 declare namespace $ {
-    class $story_app_stats extends $mol_list {
-        rows(): readonly any[];
-        Player(): $$.$mol_text;
-        Group(): $$.$mol_text;
-    }
-}
-
-declare namespace $ {
     class $mol_text_list extends $mol_text {
         auto_scroll(): any;
         attr(): Record<string, any>;
@@ -2783,6 +2775,138 @@ declare namespace $ {
 }
 
 declare namespace $ {
+}
+
+declare namespace $ {
+    class $story_app_stats extends $mol_list {
+        rows(): readonly any[];
+        player_name(): string;
+        Player(): $$.$mol_text;
+        Group(): $$.$mol_text;
+    }
+}
+
+declare namespace $ {
+    class $mol_button_major extends $mol_button_typed {
+        attr(): Record<string, any>;
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
+    class $mol_labeler extends $mol_list {
+        rows(): readonly any[];
+        label(): readonly $mol_view_content[];
+        Label(): $mol_view;
+        content(): readonly any[];
+        Content(): $mol_view;
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
+    class $mol_form_field extends $mol_labeler {
+        bids(): readonly string[];
+        label(): readonly any[];
+        content(): readonly any[];
+        name(): string;
+        bid(): string;
+        Bid(): $mol_view;
+        control(): any;
+    }
+}
+
+declare namespace $.$$ {
+    class $mol_form_field extends $.$mol_form_field {
+        bid(): string;
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
+    class $mol_row extends $mol_view {
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
+    class $mol_form extends $mol_list {
+        submit_allowed(): boolean;
+        submit_blocked(): boolean;
+        event(): Record<string, any>;
+        submit(event?: any): any;
+        rows(): readonly any[];
+        keydown(event?: any): any;
+        form_fields(): readonly $mol_form_field[];
+        body(): readonly $mol_form_field[];
+        Body(): $$.$mol_list;
+        buttons(): readonly $mol_view[];
+        foot(): readonly $mol_view[];
+        Foot(): $mol_row;
+    }
+}
+
+declare namespace $.$$ {
+    class $mol_form extends $.$mol_form {
+        form_fields(): readonly $mol_form_field[];
+        submit_allowed(): boolean;
+        submit_blocked(): boolean;
+        keydown(next: KeyboardEvent): void;
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
+    class $story_app_auth extends $mol_page {
+        title(): string;
+        body(): readonly any[];
+        name(next?: any): string;
+        Name(): $$.$mol_string;
+        login(next?: any): any;
+        valid(next?: any): boolean;
+        Login(): $mol_button_major;
+        registration(next?: any): any;
+        Registration(): $mol_button_minor;
+        demo(next?: any): any;
+        Demo(): $mol_button_minor;
+        Login_form(): $$.$mol_form;
+    }
+}
+
+declare namespace $ {
+    class $story_fetch extends $mol_fetch {
+        static json(url: string, init?: RequestInit): unknown;
+        static json_post(url: string, init?: RequestInit): unknown;
+        static json_put(url: string, init?: RequestInit): unknown;
+    }
+}
+
+declare namespace $.$$ {
+    class $story_app_auth extends $.$story_app_auth {
+        login(next?: any): void;
+        registration(next?: any): void;
+        static player(): {
+            name: string;
+        };
+        valid(): boolean;
+        demo(next?: any): void;
+    }
+}
+
+declare namespace $.$$ {
+    class $story_app_stats extends $.$story_app_stats {
+        player_name(): string;
+    }
 }
 
 declare namespace $ {
@@ -2817,14 +2941,6 @@ declare namespace $ {
         Hero(id: any): $$.$mol_list;
         heroes_list(): readonly any[];
         Heroes_list(): $$.$mol_list;
-    }
-}
-
-declare namespace $ {
-    class $story_fetch extends $mol_fetch {
-        static json(url: string, init?: RequestInit): unknown;
-        static json_post(url: string, init?: RequestInit): unknown;
-        static json_put(url: string, init?: RequestInit): unknown;
     }
 }
 
@@ -2904,23 +3020,6 @@ declare namespace $.$$ {
 }
 
 declare namespace $ {
-    class $mol_button_major extends $mol_button_typed {
-        attr(): Record<string, any>;
-    }
-}
-
-declare namespace $ {
-}
-
-declare namespace $ {
-    class $mol_row extends $mol_view {
-    }
-}
-
-declare namespace $ {
-}
-
-declare namespace $ {
     class $story_app_battle_field extends $mol_list {
         rows(): readonly any[];
         Turn(): $$.$mol_text;
@@ -2976,95 +3075,6 @@ declare namespace $ {
 }
 
 declare namespace $ {
-    class $mol_labeler extends $mol_list {
-        rows(): readonly any[];
-        label(): readonly $mol_view_content[];
-        Label(): $mol_view;
-        content(): readonly any[];
-        Content(): $mol_view;
-    }
-}
-
-declare namespace $ {
-}
-
-declare namespace $ {
-    class $mol_form_field extends $mol_labeler {
-        bids(): readonly string[];
-        label(): readonly any[];
-        content(): readonly any[];
-        name(): string;
-        bid(): string;
-        Bid(): $mol_view;
-        control(): any;
-    }
-}
-
-declare namespace $.$$ {
-    class $mol_form_field extends $.$mol_form_field {
-        bid(): string;
-    }
-}
-
-declare namespace $ {
-}
-
-declare namespace $ {
-    class $mol_form extends $mol_list {
-        submit_allowed(): boolean;
-        submit_blocked(): boolean;
-        event(): Record<string, any>;
-        submit(event?: any): any;
-        rows(): readonly any[];
-        keydown(event?: any): any;
-        form_fields(): readonly $mol_form_field[];
-        body(): readonly $mol_form_field[];
-        Body(): $$.$mol_list;
-        buttons(): readonly $mol_view[];
-        foot(): readonly $mol_view[];
-        Foot(): $mol_row;
-    }
-}
-
-declare namespace $.$$ {
-    class $mol_form extends $.$mol_form {
-        form_fields(): readonly $mol_form_field[];
-        submit_allowed(): boolean;
-        submit_blocked(): boolean;
-        keydown(next: KeyboardEvent): void;
-    }
-}
-
-declare namespace $ {
-}
-
-declare namespace $ {
-    class $story_app_auth extends $mol_page {
-        title(): string;
-        body(): readonly any[];
-        name(next?: any): string;
-        Name(): $$.$mol_string;
-        login(next?: any): any;
-        valid(next?: any): boolean;
-        Login(): $mol_button_major;
-        registration(next?: any): any;
-        Registration(): $mol_button_minor;
-        demo(next?: any): any;
-        Demo(): $mol_button_minor;
-        Login_form(): $$.$mol_form;
-    }
-}
-
-declare namespace $.$$ {
-    class $story_app_auth extends $.$story_app_auth {
-        login(next?: any): void;
-        registration(next?: any): void;
-        valid(): boolean;
-        demo(next?: any): void;
-    }
-}
-
-declare namespace $ {
     class $story_app extends $mol_book2_catalog {
         menu_title(): string;
         param(): string;
@@ -3078,7 +3088,7 @@ declare namespace $ {
         Telegram(): $$.$mol_link;
         Statistics_text(): $mol_page;
         Statistics(): $mol_page;
-        Stats(): $story_app_stats;
+        Stats(): $$.$story_app_stats;
         Inventory(): $mol_page;
         Relic(): $mol_page;
         Settings(): $mol_page;

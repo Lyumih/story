@@ -678,69 +678,13 @@ $mol_text_list_item $mol_paragraph
 
 $story_app_stats $mol_list
 	rows /
-		<= Player $mol_text text \Mikhail
+		<= Player $mol_text text <= player_name \
 		<= Group $mol_text text \Отряд 1, 2, 3
-
-$story_app_heroes $mol_page
-	title \Герои
-	body /
-		<= Party $mol_page title \Отряд
-		<= Heroes_list $mol_list
-			rows <= heroes_list /
-				<= Hero*0 $mol_list rows /
-					<= Hero_name* $mol_text text <= hero_name* \
-					<= Skill_text* $mol_text text \**Умения**
-					<= Skills* $mol_list
-						rows <= skill_list* /
-							<= Skill*0_0 $mol_view sub /
-								<= Skill_name* $mol_text text <= skill_name* \
-								<= Skill_level* $mol_text text <= skill_level* \
-								<= Skill_description* $mol_text text <= skill_description* \
-					<= Weapons_text* $mol_text text \**Оружие**
-					<= Weapons* $mol_list
-						rows <= weapon_list* /
-							<= Weapon*0_0 $mol_view sub /
-								<= Weapon_name* $mol_text text <= weapon_name* \
-								<= Weapon_level* $mol_text text <= weapon_level* \
-								<= Weapon_type* $mol_text text <= weapon_type* \
-								<= Weapon_params* $mol_text text <= weapon_params* \
 
 $mol_button_major $mol_button_typed
 	attr *
 		^
 		mol_theme \$mol_theme_accent
-
-$mol_row $mol_view
-
-$story_app_battle_field $mol_list
-	rows /
-		<= Turn $mol_text text \Ход: 2
-		<= Field $mol_list rows /
-			<= Y $mol_list rows <= y_list /
-				<= X*0 $mol_row sub <= x_list* /
-					<= Cell*0_0 $story_app_battle_field_cell
-						attr *
-							active <= cell_active*? false
-							type <= cell_type*? \
-						title <= cell_title* \
-						click? <=> click_cell*? null
-		<= Skills $mol_text text \Умения
-		<= SkillPanel $mol_row sub /
-			<= Skill_1 $mol_button_minor
-				click? <=> click_skill? null
-			<= Skill_2 $mol_button_minor
-		<= EndTurn $mol_button_major title \Закончить ход
-
-$story_app_battle_field_cell $mol_button_minor
-	x 0
-	y 0
-
-$story_app_battle $mol_page
-	title \Поле битвы
-	body /
-		<= Search_battle $mol_button_major
-			title \Найти битву
-		<= Field $story_app_battle_field
 
 $mol_labeler $mol_list
 	rows /
@@ -759,6 +703,8 @@ $mol_form_field $mol_labeler
 		<= Bid $mol_view
 			sub / <= bid \
 	content / <= control null
+
+$mol_row $mol_view
 
 $mol_form $mol_list
 	submit_allowed true
@@ -793,6 +739,60 @@ $story_app_auth $mol_page
 				<= Demo $mol_button_minor
 					title \Демо
 					click? <=> demo? null
+
+$story_app_heroes $mol_page
+	title \Герои
+	body /
+		<= Party $mol_page title \Отряд
+		<= Heroes_list $mol_list
+			rows <= heroes_list /
+				<= Hero*0 $mol_list rows /
+					<= Hero_name* $mol_text text <= hero_name* \
+					<= Skill_text* $mol_text text \**Умения**
+					<= Skills* $mol_list
+						rows <= skill_list* /
+							<= Skill*0_0 $mol_view sub /
+								<= Skill_name* $mol_text text <= skill_name* \
+								<= Skill_level* $mol_text text <= skill_level* \
+								<= Skill_description* $mol_text text <= skill_description* \
+					<= Weapons_text* $mol_text text \**Оружие**
+					<= Weapons* $mol_list
+						rows <= weapon_list* /
+							<= Weapon*0_0 $mol_view sub /
+								<= Weapon_name* $mol_text text <= weapon_name* \
+								<= Weapon_level* $mol_text text <= weapon_level* \
+								<= Weapon_type* $mol_text text <= weapon_type* \
+								<= Weapon_params* $mol_text text <= weapon_params* \
+
+$story_app_battle_field $mol_list
+	rows /
+		<= Turn $mol_text text \Ход: 2
+		<= Field $mol_list rows /
+			<= Y $mol_list rows <= y_list /
+				<= X*0 $mol_row sub <= x_list* /
+					<= Cell*0_0 $story_app_battle_field_cell
+						attr *
+							active <= cell_active*? false
+							type <= cell_type*? \
+						title <= cell_title* \
+						click? <=> click_cell*? null
+		<= Skills $mol_text text \Умения
+		<= SkillPanel $mol_row sub /
+			<= Skill_1 $mol_button_minor
+				click? <=> click_skill? null
+			<= Skill_2 $mol_button_minor
+		<= EndTurn $mol_button_major title \Закончить ход
+
+$story_app_battle_field_cell $mol_button_minor
+	x 0
+	y 0
+
+$story_app_battle $mol_page
+	title \Поле битвы
+	body /
+		<= Search_battle $mol_button_major
+			title \Найти битву
+		<= Field $story_app_battle_field
 
 $story_app $mol_book2_catalog
 	menu_title \История
