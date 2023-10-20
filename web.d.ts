@@ -2896,7 +2896,10 @@ declare namespace $ {
     class $story_app_battle_field extends $mol_list {
         rows(): readonly any[];
         Turn(): $$.$mol_text;
+        cell_active(id: any, next?: any): boolean;
+        cell_type(id: any, next?: any): string;
         cell_title(id: any): string;
+        click_cell(id: any, next?: any): any;
         Cell(id: any): $story_app_battle_field_cell;
         x_list(id: any): readonly any[];
         X(id: any): $mol_row;
@@ -2913,7 +2916,6 @@ declare namespace $ {
     class $story_app_battle_field_cell extends $mol_button_minor {
         x(): number;
         y(): number;
-        title(): string;
     }
 }
 
@@ -2928,7 +2930,12 @@ declare namespace $.$$ {
         click_skill(next?: any): void;
         y_list(): $mol_row[];
         x_list(id_y: string): readonly any[];
+        cell_title(id: string): string;
+        click_cell(id?: string): void;
     }
+}
+
+declare namespace $ {
 }
 
 declare namespace $ {
@@ -2937,6 +2944,90 @@ declare namespace $ {
         body(): readonly any[];
         Search_battle(): $mol_button_major;
         Field(): $$.$story_app_battle_field;
+    }
+}
+
+declare namespace $ {
+    class $mol_labeler extends $mol_list {
+        rows(): readonly any[];
+        label(): readonly $mol_view_content[];
+        Label(): $mol_view;
+        content(): readonly any[];
+        Content(): $mol_view;
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
+    class $mol_form_field extends $mol_labeler {
+        bids(): readonly string[];
+        label(): readonly any[];
+        content(): readonly any[];
+        name(): string;
+        bid(): string;
+        Bid(): $mol_view;
+        control(): any;
+    }
+}
+
+declare namespace $.$$ {
+    class $mol_form_field extends $.$mol_form_field {
+        bid(): string;
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
+    class $mol_form extends $mol_list {
+        submit_allowed(): boolean;
+        submit_blocked(): boolean;
+        event(): Record<string, any>;
+        submit(event?: any): any;
+        rows(): readonly any[];
+        keydown(event?: any): any;
+        form_fields(): readonly $mol_form_field[];
+        body(): readonly $mol_form_field[];
+        Body(): $$.$mol_list;
+        buttons(): readonly $mol_view[];
+        foot(): readonly $mol_view[];
+        Foot(): $mol_row;
+    }
+}
+
+declare namespace $.$$ {
+    class $mol_form extends $.$mol_form {
+        form_fields(): readonly $mol_form_field[];
+        submit_allowed(): boolean;
+        submit_blocked(): boolean;
+        keydown(next: KeyboardEvent): void;
+    }
+}
+
+declare namespace $ {
+}
+
+declare namespace $ {
+    class $story_app_auth extends $mol_page {
+        title(): string;
+        body(): readonly any[];
+        name(next?: any): any;
+        Name(): $$.$mol_string;
+        login(next?: any): any;
+        Login(): $mol_button_major;
+        registration(next?: any): any;
+        Registration(): $mol_button_minor;
+        Login_form(): $$.$mol_form;
+    }
+}
+
+declare namespace $.$$ {
+    class $story_app_auth extends $.$story_app_auth {
+        login(next?: any): void;
+        registration(next?: any): void;
     }
 }
 
@@ -2962,6 +3053,7 @@ declare namespace $ {
         Join_clan(): $mol_page;
         Clan(): $mol_page;
         Wiki(): $$.$mol_link;
+        Auth(): $$.$story_app_auth;
     }
 }
 

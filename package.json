@@ -205,7 +205,11 @@
     "$story_app_battle",
     "$mol_button_major",
     "$story_app_battle_field",
-    "$mol_row"
+    "$mol_row",
+    "$story_app_auth",
+    "$mol_form",
+    "$mol_form_field",
+    "$mol_labeler"
   ],
   "dependencies": {
     "jsdom": "*",

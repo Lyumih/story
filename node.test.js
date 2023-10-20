@@ -10275,12 +10275,32 @@ var $;
             obj.text = () => "Ход: 2";
             return obj;
         }
+        cell_active(id, next) {
+            if (next !== undefined)
+                return next;
+            return false;
+        }
+        cell_type(id, next) {
+            if (next !== undefined)
+                return next;
+            return "";
+        }
         cell_title(id) {
             return "";
         }
+        click_cell(id, next) {
+            if (next !== undefined)
+                return next;
+            return null;
+        }
         Cell(id) {
             const obj = new this.$.$story_app_battle_field_cell();
+            obj.attr = () => ({
+                active: this.cell_active(id),
+                type: this.cell_type(id)
+            });
             obj.title = () => this.cell_title(id);
+            obj.click = (next) => this.click_cell(id, next);
             return obj;
         }
         x_list(id) {
@@ -10348,6 +10368,15 @@ var $;
     ], $story_app_battle_field.prototype, "Turn", null);
     __decorate([
         $mol_mem_key
+    ], $story_app_battle_field.prototype, "cell_active", null);
+    __decorate([
+        $mol_mem_key
+    ], $story_app_battle_field.prototype, "cell_type", null);
+    __decorate([
+        $mol_mem_key
+    ], $story_app_battle_field.prototype, "click_cell", null);
+    __decorate([
+        $mol_mem_key
     ], $story_app_battle_field.prototype, "Cell", null);
     __decorate([
         $mol_mem_key
@@ -10384,9 +10413,6 @@ var $;
         y() {
             return 0;
         }
-        title() {
-            return "Герой";
-        }
     }
     $.$story_app_battle_field_cell = $story_app_battle_field_cell;
 })($ || ($ = {}));
@@ -10407,11 +10433,26 @@ var $;
             x_list(id_y) {
                 return [1, 2, 3].map(x => this.Cell(id_y + '_' + x));
             }
+            cell_title(id) {
+                return id;
+            }
+            click_cell(id) {
+                console.log(this.Cell(id).attr);
+                console.log('cell', id);
+                this.cell_active(id, !this.cell_active(id));
+            }
         }
         $$.$story_app_battle_field = $story_app_battle_field;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
 //story/app/battle/field/field.view.ts
+;
+"use strict";
+var $;
+(function ($) {
+    $mol_style_attach("story/app/battle/field/field.view.css", "[story_app_battle_field_cell]{\n\twidth: 60px;\n\theight: 60px;\n\tbackground-image: url(https://w7.pngwing.com/pngs/1020/831/png-transparent-gray-surface-illustration-mixed-martial-arts-heavyweight-octagon-boxing-rings-combat-mma-fight-flyer-angle-rectangle-sports.png);\n\tbackground-size: cover;\n\tbackground-position: center;\n}\n\n[story_app_battle_field_cell][active='true'] {\n\tbox-shadow: 0 0 10px red;\n}\n\n[story_app_battle_field_cell][type='hero'] {\n\tbackground-color: lightblue;\n}\n\n[story_app_battle_field_cell][type='enemy'] {\n\tbackground-color: lightpink;\n}\n\n");
+})($ || ($ = {}));
+//story/app/battle/field/-css/field.view.css.ts
 ;
 "use strict";
 var $;
@@ -10449,6 +10490,331 @@ var $;
 "use strict";
 var $;
 (function ($) {
+    class $mol_labeler extends $mol_list {
+        rows() {
+            return [
+                this.Label(),
+                this.Content()
+            ];
+        }
+        label() {
+            return [
+                this.title()
+            ];
+        }
+        Label() {
+            const obj = new this.$.$mol_view();
+            obj.minimal_height = () => 32;
+            obj.sub = () => this.label();
+            return obj;
+        }
+        content() {
+            return [];
+        }
+        Content() {
+            const obj = new this.$.$mol_view();
+            obj.minimal_height = () => 24;
+            obj.sub = () => this.content();
+            return obj;
+        }
+    }
+    __decorate([
+        $mol_mem
+    ], $mol_labeler.prototype, "Label", null);
+    __decorate([
+        $mol_mem
+    ], $mol_labeler.prototype, "Content", null);
+    $.$mol_labeler = $mol_labeler;
+})($ || ($ = {}));
+//mol/labeler/-view.tree/labeler.view.tree.ts
+;
+"use strict";
+var $;
+(function ($) {
+    $mol_style_attach("mol/labeler/labeler.view.css", "[mol_labeler] {\n\tdisplay: flex;\n\tflex-direction: column;\n\talign-items: stretch;\n\tcursor: inherit;\n}\n\n[mol_labeler_label] {\n\tmin-height: 2rem;\n\tcolor: var(--mol_theme_shade);\n\tpadding: .5rem .75rem 0;\n\tgap: 0 var(--mol_gap_block);\n\tflex-wrap: wrap;\n}\n\n[mol_labeler_content] {\n\tdisplay: flex;\n\tpadding: var(--mol_gap_text);\n}\n");
+})($ || ($ = {}));
+//mol/labeler/-css/labeler.view.css.ts
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_form_field extends $mol_labeler {
+        bids() {
+            return [];
+        }
+        label() {
+            return [
+                this.name(),
+                this.Bid()
+            ];
+        }
+        content() {
+            return [
+                this.control()
+            ];
+        }
+        name() {
+            return "";
+        }
+        bid() {
+            return "";
+        }
+        Bid() {
+            const obj = new this.$.$mol_view();
+            obj.sub = () => [
+                this.bid()
+            ];
+            return obj;
+        }
+        control() {
+            return null;
+        }
+    }
+    __decorate([
+        $mol_mem
+    ], $mol_form_field.prototype, "Bid", null);
+    $.$mol_form_field = $mol_form_field;
+})($ || ($ = {}));
+//mol/form/field/-view.tree/field.view.tree.ts
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        class $mol_form_field extends $.$mol_form_field {
+            bid() {
+                return this.bids().filter(Boolean)[0] ?? '';
+            }
+        }
+        __decorate([
+            $mol_mem
+        ], $mol_form_field.prototype, "bid", null);
+        $$.$mol_form_field = $mol_form_field;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+//mol/form/field/field.view.ts
+;
+"use strict";
+var $;
+(function ($) {
+    $mol_style_attach("mol/form/field/field.view.css", "[mol_form_field] {\n\talign-items: stretch;\n}\n\n[mol_form_field_bid] {\n\tcolor: var(--mol_theme_focus);\n\tdisplay: inline-block;\n\ttext-shadow: 0 0;\n}\n\n[mol_form_field_content] {\n\tborder-radius: var(--mol_gap_round);\n}\n");
+})($ || ($ = {}));
+//mol/form/field/-css/field.view.css.ts
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_form extends $mol_list {
+        submit_allowed() {
+            return true;
+        }
+        submit_blocked() {
+            return false;
+        }
+        event() {
+            return {
+                ...super.event(),
+                keydown: (event) => this.keydown(event)
+            };
+        }
+        submit(event) {
+            if (event !== undefined)
+                return event;
+            return null;
+        }
+        rows() {
+            return [
+                this.Body(),
+                this.Foot()
+            ];
+        }
+        keydown(event) {
+            if (event !== undefined)
+                return event;
+            return null;
+        }
+        form_fields() {
+            return [];
+        }
+        body() {
+            return this.form_fields();
+        }
+        Body() {
+            const obj = new this.$.$mol_list();
+            obj.sub = () => this.body();
+            return obj;
+        }
+        buttons() {
+            return [];
+        }
+        foot() {
+            return this.buttons();
+        }
+        Foot() {
+            const obj = new this.$.$mol_row();
+            obj.sub = () => this.foot();
+            return obj;
+        }
+    }
+    __decorate([
+        $mol_mem
+    ], $mol_form.prototype, "submit", null);
+    __decorate([
+        $mol_mem
+    ], $mol_form.prototype, "keydown", null);
+    __decorate([
+        $mol_mem
+    ], $mol_form.prototype, "Body", null);
+    __decorate([
+        $mol_mem
+    ], $mol_form.prototype, "Foot", null);
+    $.$mol_form = $mol_form;
+})($ || ($ = {}));
+//mol/form/-view.tree/form.view.tree.ts
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        class $mol_form extends $.$mol_form {
+            form_fields() {
+                return [...this.view_find(view => view instanceof $mol_form_field)]
+                    .map(path => path[path.length - 1]);
+            }
+            submit_allowed() {
+                return this.form_fields().every(field => !field.bid());
+            }
+            submit_blocked() {
+                return !this.submit_allowed();
+            }
+            keydown(next) {
+                if (next.ctrlKey && next.keyCode === $mol_keyboard_code.enter && !this.submit_blocked())
+                    this.submit(event);
+            }
+        }
+        __decorate([
+            $mol_mem
+        ], $mol_form.prototype, "form_fields", null);
+        __decorate([
+            $mol_mem
+        ], $mol_form.prototype, "submit_allowed", null);
+        $$.$mol_form = $mol_form;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+//mol/form/form.view.ts
+;
+"use strict";
+var $;
+(function ($) {
+    $mol_style_attach("mol/form/form.view.css", "[mol_form] {\r\n\tgap: var(--mol_gap_block);\r\n}\r\n\r\n[mol_form_body] {\r\n\tgap: var(--mol_gap_block);\r\n}");
+})($ || ($ = {}));
+//mol/form/-css/form.view.css.ts
+;
+"use strict";
+var $;
+(function ($) {
+    class $story_app_auth extends $mol_page {
+        title() {
+            return "Авторизация";
+        }
+        body() {
+            return [
+                this.Login_form()
+            ];
+        }
+        name(next) {
+            if (next !== undefined)
+                return next;
+            return null;
+        }
+        Name() {
+            const obj = new this.$.$mol_string();
+            obj.hint = () => "Имя";
+            obj.value = (next) => this.name(next);
+            return obj;
+        }
+        login(next) {
+            if (next !== undefined)
+                return next;
+            return null;
+        }
+        Login() {
+            const obj = new this.$.$mol_button_major();
+            obj.title = () => "Войти";
+            obj.click = (next) => this.login(next);
+            return obj;
+        }
+        registration(next) {
+            if (next !== undefined)
+                return next;
+            return null;
+        }
+        Registration() {
+            const obj = new this.$.$mol_button_minor();
+            obj.title = () => "Регистрация";
+            obj.click = (next) => this.registration(next);
+            return obj;
+        }
+        Login_form() {
+            const obj = new this.$.$mol_form();
+            obj.form_fields = () => [
+                this.Name()
+            ];
+            obj.buttons = () => [
+                this.Login(),
+                this.Registration()
+            ];
+            return obj;
+        }
+    }
+    __decorate([
+        $mol_mem
+    ], $story_app_auth.prototype, "name", null);
+    __decorate([
+        $mol_mem
+    ], $story_app_auth.prototype, "Name", null);
+    __decorate([
+        $mol_mem
+    ], $story_app_auth.prototype, "login", null);
+    __decorate([
+        $mol_mem
+    ], $story_app_auth.prototype, "Login", null);
+    __decorate([
+        $mol_mem
+    ], $story_app_auth.prototype, "registration", null);
+    __decorate([
+        $mol_mem
+    ], $story_app_auth.prototype, "Registration", null);
+    __decorate([
+        $mol_mem
+    ], $story_app_auth.prototype, "Login_form", null);
+    $.$story_app_auth = $story_app_auth;
+})($ || ($ = {}));
+//story/app/auth/-view.tree/auth.view.tree.ts
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        class $story_app_auth extends $.$story_app_auth {
+            login(next) {
+                console.log('login');
+            }
+            registration(next) {
+                console.log('registration');
+            }
+        }
+        $$.$story_app_auth = $story_app_auth;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+//story/app/auth/auth.view.ts
+;
+"use strict";
+var $;
+(function ($) {
     class $story_app extends $mol_book2_catalog {
         menu_title() {
             return "История";
@@ -10470,7 +10836,8 @@ var $;
                 quest: this.Quest(),
                 event: this.Event(),
                 clan: this.Clan(),
-                wiki: this.Wiki()
+                wiki: this.Wiki(),
+                auth: this.Auth()
             };
         }
         Statistics_text() {
@@ -10564,6 +10931,10 @@ var $;
             obj.uri = () => "https://page.hyoo.ru/#!=sgmokp_sixci8";
             return obj;
         }
+        Auth() {
+            const obj = new this.$.$story_app_auth();
+            return obj;
+        }
     }
     __decorate([
         $mol_mem
@@ -10610,6 +10981,9 @@ var $;
     __decorate([
         $mol_mem
     ], $story_app.prototype, "Wiki", null);
+    __decorate([
+        $mol_mem
+    ], $story_app.prototype, "Auth", null);
     $.$story_app = $story_app;
 })($ || ($ = {}));
 //story/app/-view.tree/app.view.tree.ts

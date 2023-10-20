@@ -705,7 +705,11 @@ $story_app_battle_field $mol_list
 			<= Y $mol_list rows <= y_list /
 				<= X*0 $mol_row sub <= x_list* /
 					<= Cell*0_0 $story_app_battle_field_cell
+						attr *
+							active <= cell_active*? false
+							type <= cell_type*? \
 						title <= cell_title* \
+						click? <=> click_cell*? null
 		<= Skills $mol_text text \Умения
 		<= SkillPanel $mol_row sub /
 			<= Skill_1 $mol_button_minor
@@ -716,7 +720,6 @@ $story_app_battle_field $mol_list
 $story_app_battle_field_cell $mol_button_minor
 	x 0
 	y 0
-	title \Герой
 
 $story_app_battle $mol_page
 	title \Поле битвы
@@ -724,6 +727,53 @@ $story_app_battle $mol_page
 		<= Search_battle $mol_button_major
 			title \Найти битву
 		<= Field $story_app_battle_field
+
+$mol_labeler $mol_list
+	rows /
+		<= Label $mol_view
+			minimal_height 32
+			sub <= label /$mol_view_content
+				<= title
+		<= Content $mol_view
+			minimal_height 24
+			sub <= content /
+
+$mol_form_field $mol_labeler
+	bids /string
+	label /
+		<= name \
+		<= Bid $mol_view
+			sub / <= bid \
+	content / <= control null
+
+$mol_form $mol_list
+	submit_allowed true
+	submit_blocked false
+	event *
+		^
+		keydown?event <=> keydown?event null
+	submit?event null
+	rows /
+		<= Body $mol_list
+			sub <= body <= form_fields /$mol_form_field
+		<= Foot $mol_row
+			sub <= foot <= buttons /$mol_view
+
+$story_app_auth $mol_page
+	title \Авторизация
+	body /
+		<= Login_form $mol_form
+			form_fields /
+				<= Name $mol_string
+					hint \Имя
+					value? <=> name? null
+			buttons /
+				<= Login $mol_button_major
+					title \Войти
+					click? <=> login? null
+				<= Registration $mol_button_minor
+					title \Регистрация
+					click? <=> registration? null
 
 $story_app $mol_book2_catalog
 	menu_title \История
@@ -763,4 +813,6 @@ $story_app $mol_book2_catalog
 		wiki <= Wiki $mol_link
 			title \Об игре
 			uri \https://page.hyoo.ru/#!=sgmokp_sixci8
+		- Авторизация и регистрация
+		auth <= Auth $story_app_auth
 
